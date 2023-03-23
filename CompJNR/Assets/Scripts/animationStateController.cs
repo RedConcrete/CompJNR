@@ -5,7 +5,9 @@ using UnityEngine;
 public class animationStateController : MonoBehaviour
 {
     Animator animator;
-
+    //public Transform groundCheck;
+    //public float groundDist = 0.4f;
+    //public LayerMask groudMask;
 
     // Start is called before the first frame update
     void Start()
@@ -23,8 +25,12 @@ public class animationStateController : MonoBehaviour
         bool isJumping = animator.GetBool("isJumping");
         bool isRunning = animator.GetBool("isRunning");
         bool isWalking = animator.GetBool("isWalking");
+        //bool isGrounded = Physics.CheckSphere(groundCheck.position, groundDist, groudMask);
 
-
+        //if (isGrounded)
+        //{
+        //    animator.SetBool("isLanding", true);
+        //}
         if (!isJumping && isSpacePressed)
         {
             animator.SetBool("isJumping", true);

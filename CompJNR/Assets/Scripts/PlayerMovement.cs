@@ -1,40 +1,57 @@
-//make sure to add a CharacterController to the thing that you want to move
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class playerMovement : MonoBehaviour
 {
-    CharacterController characterController;
+    public CharacterController charController;
 
-    public float jumpSpeed = 8.0f;
-    public float gravity = 20.0f;
-    public float speed = 9.0f;
+    public float speed = 12.0f;
+    public float maxSpeed = 24f;
+    public float jumpHeight = 3f;
 
-    private Vector3 moveDirection = Vector3.zero;
+    public float g = -10;
 
-    private void Start()
-    {
-        characterController = GetComponent<CharacterController>();
-    }
+    public Transform groundCheck;
+    public float groundDist = 0.4f;
+    public LayerMask groudMask;
+
+
+    Vector3 v;
+    bool isGrounded;
 
     void Update()
     {
-        var horizontal = Input.GetAxis("Horizontal");
-        var vertical = Input.GetAxis("Vertical");
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDist, groudMask);
 
-        transform.Translate(new Vector3(horizontal, 0, vertical) * (speed * Time.deltaTime));
-
-        if (characterController.isGrounded)
+        if (isGrounded && v.y < 0)
         {
-
-            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
-            moveDirection *= speed;
-
-            if (Input.GetButton("Jump"))
-            {
-                moveDirection.y = jumpSpeed;
-            }
+            v.y = -2f;
         }
-        moveDirection.y -= gravity * Time.deltaTime;
-        characterController.Move(moveDirection * Time.deltaTime);
+
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
+
+
+
+        Vector3 move = transform.right * x + transform.forward * z;
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            charController.Move(move * maxSpeed * Time.deltaTime);
+        }
+        else
+        {
+            charController.Move(move * speed * Time.deltaTime);
+        }
+
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            v.y = Mathf.Sqrt(jumpHeight * -2f * g);
+        }
+
+
+        v.y += g * Time.deltaTime;
+
+        charController.Move(v * Time.deltaTime);
+
     }
 }
