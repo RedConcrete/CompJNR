@@ -20,29 +20,32 @@ public class animationStateController : MonoBehaviour
         bool isForwaredPressed = Input.GetKey(KeyCode.W);
         bool isShiftPressed = Input.GetKey(KeyCode.LeftShift);
         bool isSpacePressed = Input.GetKey(KeyCode.Space);
+        bool isJumping = animator.GetBool("isJumping");
+        bool isRunning = animator.GetBool("isRunning");
+        bool isWalking = animator.GetBool("isWalking");
 
 
-        if (isSpacePressed)
+        if (!isJumping && isSpacePressed)
         {
             animator.SetBool("isJumping", true);
         }
-        if (!isSpacePressed)
+        if (isJumping && !isSpacePressed)
         {
             animator.SetBool("isJumping", false);
         }
-        if (isShiftPressed)
+        if (!isRunning && isShiftPressed)
         {
             animator.SetBool("isRunning", true);
         }
-        if (!isShiftPressed)
+        if (isRunning && !isShiftPressed)
         {
             animator.SetBool("isRunning", false);
         }
-        if (isForwaredPressed)
+        if (!isWalking && isForwaredPressed)
         {
             animator.SetBool("isWalking", true);
         }
-        if (!isForwaredPressed)
+        if (isWalking && !isForwaredPressed)
         {
             animator.SetBool("isWalking", false);
         }
