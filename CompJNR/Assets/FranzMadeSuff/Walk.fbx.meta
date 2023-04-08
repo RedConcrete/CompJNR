@@ -276,120 +276,320 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: Walk(Clone)
+    - name: Mario(Clone)
       parentName: 
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: AllRoot
-      parentName: Walk(Clone)
-      position: {x: 0.01108852, y: -0.00124279, z: -0.035318747}
-      rotation: {x: 0.03034224, y: 0.00029312365, z: 0.009656009, w: 0.9994929}
+      parentName: Mario(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: JointRoot
       parentName: AllRoot
-      position: {x: -0.0013700491, y: 0.5067779, z: -0.019010954}
-      rotation: {x: -0.020424156, y: 0.069037385, z: 0.0014136932, w: 0.997404}
+      position: {x: 0, y: 0.532152, z: -0.040544394}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Hip
       parentName: JointRoot
-      position: {x: -0, y: -0.02, z: 0}
-      rotation: {x: 0.45523876, y: 0.45904937, z: 0.55710953, w: 0.52121043}
+      position: {x: -0, y: -0.020361546, z: 0}
+      rotation: {x: 0.50000006, y: 0.50000006, z: 0.50000006, w: 0.49999988}
       scale: {x: 1, y: 1, z: 1}
     - name: LegL1
       parentName: Hip
-      position: {x: -0.0403, y: 0.0257694, z: -0.114099994}
-      rotation: {x: -0.031934604, y: -0.06616843, z: 0.09649636, w: 0.992618}
+      position: {x: -0.040944822, y: 0.026181702, z: -0.115925595}
+      rotation: {x: -0.000000022351744, y: 0.000000043493344, z: -0.000000012107208, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: LegL2
       parentName: LegL1
-      position: {x: -0.2339, y: 0, z: 0}
-      rotation: {x: 0.011587356, y: -0.011242163, z: 0.0813071, w: 0.99655837}
+      position: {x: -0.2376425, y: -0.00000003391266, z: -0.000000019378662}
+      rotation: {x: -0.00000008940696, y: 0.00000034447402, z: 0.00000004377213, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: FootL
       parentName: LegL2
-      position: {x: -0.16459998, y: 0, z: 0}
-      rotation: {x: 0.82443434, y: -0.5493312, z: -0.06965304, w: 0.11701215}
+      position: {x: -0.16723356, y: -0.000000013322829, z: 0.000000009689331}
+      rotation: {x: 0.000000007037067, y: 0.000000054977704, z: -0.53729963, w: 0.8433914}
       scale: {x: 1, y: 1, z: 1}
     - name: ToeL
       parentName: FootL
-      position: {x: -0.1217, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0.21643265, w: 0.97629756}
+      position: {x: -0.12364726, y: 0, z: 0}
+      rotation: {x: 0.000000016733553, y: 0.00000005487094, z: -0.21643972, w: 0.976296}
       scale: {x: 1, y: 1, z: 1}
     - name: LegR1
       parentName: Hip
-      position: {x: -0.0403, y: 0.0257694, z: 0.114099994}
-      rotation: {x: 0.114586845, y: -0.02354547, z: -0.13065755, w: 0.984502}
-      scale: {x: 1, y: 0.99999994, z: 1}
+      position: {x: -0.04094479, y: 0.026181689, z: 0.1159256}
+      rotation: {x: -0.000000014901198, y: -0.0000020414593, z: -0.000000019557515, w: 1}
+      scale: {x: 1, y: 1, z: 1}
     - name: LegR2
       parentName: LegR1
-      position: {x: -0.2339, y: 0, z: -0.0000000420768}
-      rotation: {x: 0.000000011140697, y: -0.000000038554536, z: 0.27760184, w: 0.9606962}
+      position: {x: -0.23764238, y: -0.00000003996849, z: -0.000000048446655}
+      rotation: {x: -0.0000000670551, y: -0.000000044581387, z: 0.00000003911559, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: FootR
       parentName: LegR2
-      position: {x: -0.16459998, y: 0, z: 0}
-      rotation: {x: -0.008565074, y: -0.02174379, z: -0.7808428, w: 0.62429035}
-      scale: {x: 1, y: 1, z: 1}
+      position: {x: -0.16723363, y: 0, z: -0.000000019378662}
+      rotation: {x: -0.000000065586335, y: 0.00000004954994, z: -0.53729963, w: 0.8433914}
+      scale: {x: 1.000001, y: 1, z: 1}
     - name: ToeR
       parentName: FootR
-      position: {x: -0.1217, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0.2164393, w: 0.97629607}
+      position: {x: -0.12364722, y: -0.000000029067994, z: 0.000000009689331}
+      rotation: {x: -0.000000017367908, y: -0.000000012550269, z: -0.21643972, w: 0.976296}
       scale: {x: 1, y: 1, z: 1}
     - name: Spine1
       parentName: JointRoot
-      position: {x: -0, y: 0.02, z: 0}
-      rotation: {x: -0.49399826, y: 0.49383897, z: 0.5313997, w: -0.47927356}
-      scale: {x: 1, y: 1.0000001, z: 1}
+      position: {x: -0, y: 0.02032, z: 0}
+      rotation: {x: 0.5, y: -0.5, z: -0.5, w: 0.5}
+      scale: {x: 1, y: 1, z: 1}
     - name: Spine2
       parentName: Spine1
-      position: {x: -0.119504996, y: 0, z: 0}
-      rotation: {x: -0.032244556, y: 0, z: -0, w: 0.99948}
-      scale: {x: 1, y: 1, z: 1}
-    - name: Head
-      parentName: Spine2
-      position: {x: -0.254536, y: 0.00000591231, z: 0}
-      rotation: {x: 0.083408214, y: 0.10024697, z: -0.6642452, w: 0.7360516}
+      position: {x: -0.12141201, y: 0, z: -2.3101166e-15}
+      rotation: {x: -3.328007e-31, y: -3.345549e-31, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: ShoulderL
       parentName: Spine2
-      position: {x: -0.100846, y: 0.0069014602, z: 0.031235699}
-      rotation: {x: 0.52367383, y: -0.51480293, z: -0.47519025, w: -0.48470393}
-      scale: {x: 1, y: 0.99999994, z: 1}
+      position: {x: -0.10245955, y: 0.0070118997, z: 0.031735472}
+      rotation: {x: -0.50000006, y: 0.49999997, z: 0.49999997, w: 0.50000006}
+      scale: {x: 1, y: 1, z: 1}
     - name: ArmL1
       parentName: ShoulderL
-      position: {x: -0.1533, y: 0, z: 0}
-      rotation: {x: 0.05542469, y: -0.07845376, z: 0.031146333, w: 0.9948884}
-      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+      position: {x: -0.15575281, y: -0.0000001550293, z: 0.0000000072669986}
+      rotation: {x: -8.835242e-29, y: -0, z: -1.9570965e-22, w: 1}
+      scale: {x: 1, y: 1, z: 1}
     - name: ArmL2
       parentName: ArmL1
-      position: {x: -0.17, y: 0, z: 0.0000000106400995}
-      rotation: {x: -0.0058993287, y: 0.0068429857, z: -0.0139067, w: 0.99986255}
+      position: {x: -0.17271996, y: 0.00000038757324, z: 0.0000000024223328}
+      rotation: {x: -2.1457017e-28, y: -0, z: -1.9570965e-22, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: HandL
       parentName: ArmL2
-      position: {x: -0.16, y: 0, z: 0}
-      rotation: {x: -0.13017914, y: 0.016831283, z: -0.047309738, w: 0.9902181}
+      position: {x: -0.16256, y: -0.00000023254395, z: 0.0000000024223328}
+      rotation: {x: -3.7865323e-28, y: -0, z: -1.9570965e-22, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: MarioHandL
+      parentName: HandL
+      position: {x: -0.0000043795776, y: 0.000004030762, z: 0.0000044352914}
+      rotation: {x: 2.5713663e-12, y: -0.70698476, z: 2.5735093e-12, w: 0.7072288}
+      scale: {x: 1, y: 1, z: 1}
+    - name: HandL01
+      parentName: MarioHandL
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: HandL02
+      parentName: MarioHandL
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: HandL03
+      parentName: MarioHandL
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: HandL04
+      parentName: MarioHandL
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: HandL05
+      parentName: MarioHandL
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: HandL06
+      parentName: MarioHandL
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: HandL00
+      parentName: MarioHandL
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 3.6633423e-16, y: -0.00000016143564, z: -1.619413e-14, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: ShoulderR
       parentName: Spine2
-      position: {x: -0.100846, y: 0.0069014602, z: -0.031235699}
-      rotation: {x: 0.500003, y: 0.499997, z: 0.50000286, w: -0.49999714}
+      position: {x: -0.10245955, y: 0.007011895, z: -0.031735472}
+      rotation: {x: -0.5, y: -0.5, z: -0.5, w: 0.5}
       scale: {x: 1, y: 1, z: 1}
     - name: ArmR1
       parentName: ShoulderR
-      position: {x: -0.1533, y: 0, z: 0}
-      rotation: {x: -0.13518193, y: 0.042905647, z: -0.014509515, w: 0.9897851}
+      position: {x: -0.1557528, y: 0, z: 0}
+      rotation: {x: -3.2695878e-24, y: -5.7425835e-25, z: -1.6543614e-23, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: ArmR2
       parentName: ArmR1
-      position: {x: -0.17, y: 0, z: 0}
-      rotation: {x: 0.0000000018585203, y: 0.010680829, z: -0.00000017385615, w: 0.99994296}
+      position: {x: -0.17272004, y: -0.0000001550293, z: 0}
+      rotation: {x: -3.2695878e-24, y: -5.7425835e-25, z: -6.6910667e-31, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: HandR
       parentName: ArmR2
-      position: {x: -0.16, y: 0, z: 0}
-      rotation: {x: 0.26040778, y: -0.046746433, z: -0.098104164, w: 0.9593634}
+      position: {x: -0.16256, y: 0, z: 0}
+      rotation: {x: -3.2695878e-24, y: -5.7425835e-25, z: -6.6910667e-31, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: MarioHandR
+      parentName: HandR
+      position: {x: -0.0000043408204, y: -0.0000038757325, z: 0.000004493427}
+      rotation: {x: 0.7071068, y: -0.00000009415697, z: -0.7071068, w: -0.00000009415697}
+      scale: {x: 1, y: 1, z: 1}
+    - name: HandR01
+      parentName: MarioHandR
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: HandR02
+      parentName: MarioHandR
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: HandR03
+      parentName: MarioHandR
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: HandR04
+      parentName: MarioHandR
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: HandR05
+      parentName: MarioHandR
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: HandR06
+      parentName: MarioHandR
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: HandR00
+      parentName: MarioHandR
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -1.5366132e-21, y: 0.00000003744892, z: 7.625402e-24, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head
+      parentName: Spine2
+      position: {x: -0.25860855, y: 0.000005968628, z: -6.93035e-15}
+      rotation: {x: -2.2230597e-24, y: 2.559293e-24, z: -0.7071068, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: MarioFace
+      parentName: Head
+      position: {x: -0.000000031490327, y: -0.0000041082762, z: 0.00000005079996}
+      rotation: {x: 0.7071068, y: 0.00000009415697, z: -0.7071068, w: 0.00000009415697}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face01
+      parentName: MarioFace
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face02
+      parentName: MarioFace
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face03
+      parentName: MarioFace
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face04
+      parentName: MarioFace
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face05
+      parentName: MarioFace
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face06
+      parentName: MarioFace
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face07
+      parentName: MarioFace
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face08
+      parentName: MarioFace
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: MarioEye
+      parentName: MarioFace
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyelid00
+      parentName: MarioEye
+      position: {x: -0, y: -1.010855, z: 0.0405384}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyelid01
+      parentName: MarioEye
+      position: {x: -0, y: -1.010855, z: 0.0405384}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyeball
+      parentName: MarioEye
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.000000073553416, y: 0.00000008940698, z: 1.0128901e-14, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face00
+      parentName: MarioFace
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.000000073553416, y: 0.00000008940698, z: 1.0128901e-14, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Eyeball__MarioEyeMat00
+      parentName: Mario(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face00__MarioFaceMat00
+      parentName: Mario(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Face00__MarioHigeMat00
+      parentName: Face00__MarioFaceMat00
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: HandL00__MarioHandMat00
+      parentName: Mario(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: HandR00__MarioHandMat00
+      parentName: Mario(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mario__MarioBodyMat00
+      parentName: Mario(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mario__MarioBodyMat01
+      parentName: Mario__MarioBodyMat00
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mario__MarioFaceMat00
+      parentName: Mario__MarioBodyMat00
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mario__MarioMetalMat00
+      parentName: Mario__MarioBodyMat00
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mario__MarioShoesMat00
+      parentName: Mario__MarioBodyMat00
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     armTwist: 0.5
     foreArmTwist: 0.5
@@ -401,13 +601,13 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 1
+    hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 37b61c907afdbf146a9b10e738ef6e25, type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1
-  avatarSetup: 1
+  avatarSetup: 2
   addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   remapMaterialsIfMaterialImportModeIsNone: 1
   additionalBone: 0
