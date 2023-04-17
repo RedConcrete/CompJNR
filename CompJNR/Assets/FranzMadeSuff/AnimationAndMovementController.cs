@@ -20,7 +20,7 @@ public class AnimationAndMovementController : MonoBehaviour
     bool isRunPressed;
 
     public float rotaionFactorPerFrame = 10.0f;
-    public float runMulti = 3.0f;
+    public float runMulti = 5.0f;
 
     private void Awake()
     {
