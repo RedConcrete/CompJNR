@@ -32,6 +32,16 @@ public class AnimationAndMovementController : MonoBehaviour
     float maxJumpTime = 1.0f;
     bool isJumping= false;
 
+    int isJumpingHash;
+    bool isJumpAnimating = false;
+
+    int jumpCount = 0;
+
+    Dictionary<int, float> initJumpVDic = new Dictionary<int, float>();
+    Dictionary<int, float> jumpG = new Dictionary<int, float>();
+
+    Coroutine currentJumpResRoutine = null;
+
 
     private void Awake()
     {
@@ -41,6 +51,7 @@ public class AnimationAndMovementController : MonoBehaviour
 
         isWalkingHash = Animator.StringToHash("isWalking");
         isRunningHash = Animator.StringToHash("isRunning");
+        isJumpingHash = Animator.StringToHash("isJumping");
 
         playerInput.CharacterControls.Move.started += onMovementInput;
         playerInput.CharacterControls.Move.canceled += onMovementInput;
@@ -62,20 +73,47 @@ public class AnimationAndMovementController : MonoBehaviour
         g = (-2 * maxJumpH) / Mathf.Pow(timeToApex, 2);
         initialJumpV = (2 * maxJumpH) / timeToApex;
 
-        Debug.Log("JumpSetup");
+        float secondJumpG = (-2 * maxJumpH + 2) / Mathf.Pow((timeToApex * 1.25f), 2);
+        float seconfJumpIniV =  (2 * maxJumpH + 2) / (timeToApex * 1.25f);
+        float thridJumpG =  (-2 * maxJumpH + 4) / Mathf.Pow((timeToApex * 1.5f), 2);
+        float thridJumpIniV =   (2 * maxJumpH + 4) / (timeToApex * 1.5f);
+
+        initJumpVDic.Add(1, initialJumpV);
+        initJumpVDic.Add(2, seconfJumpIniV);
+        initJumpVDic.Add(3, thridJumpIniV);
+
+        jumpG.Add(0, g);
+        jumpG.Add(1, g);
+        jumpG.Add(2, secondJumpG);
+        jumpG.Add(3, thridJumpG);
+
     }
 
     void handelJump()
     {
         if (!isJumping && characterController.isGrounded && isJumpPressed){
+            if (jumpCount < 3 && currentJumpResRoutine != null)
+            {
+                StopCoroutine(currentJumpResRoutine);
+            }
+            animator.SetBool(isJumpingHash ,true);
+            isJumpAnimating = true;
             isJumping = true;
-            currentMov.y = initialJumpV * .5f;
-            currentRunMov.y = initialJumpV * .5f;
+            jumpCount += 1; 
+            currentMov.y = initJumpVDic[jumpCount] * .5f;
+            currentRunMov.y = initJumpVDic[jumpCount] * .5f;
         }
         else if (characterController.isGrounded && !isJumpPressed && isJumping){
             isJumping = false;
         }
     }
+
+    IEnumerator jumpResetRoutine()
+    {
+        yield return new WaitForSeconds(.5f);
+        jumpCount = 0;
+    }
+
 
     void onJump(InputAction.CallbackContext context)
     {
@@ -122,11 +160,18 @@ public class AnimationAndMovementController : MonoBehaviour
 
         if (characterController.isGrounded)
         {
+            if (isJumpAnimating)
+            {
+                animator.SetBool(isJumpingHash, false);
+                isJumpAnimating = false;
+                currentJumpResRoutine = StartCoroutine(jumpResetRoutine());
+            }
+            
             currentMov.y = gGrounded;
             currentRunMov.y = gGrounded;
         }else if (isFalling){
             float previousYV = currentMov.y;
-            float newYV = currentMov.y + (g * fallMulti *Time.deltaTime);
+            float newYV = currentMov.y + (jumpG[jumpCount] * fallMulti *Time.deltaTime);
             float nextYV = (previousYV + newYV) * .5f;
             currentMov.y = nextYV;
             currentRunMov.y = nextYV;
@@ -134,7 +179,7 @@ public class AnimationAndMovementController : MonoBehaviour
         else
         {
             float previousYV = currentMov.y;
-            float newYV = currentMov.y + (g * Time.deltaTime);
+            float newYV = currentMov.y + (jumpG[jumpCount] * Time.deltaTime);
             float nextYV = (previousYV + newYV) * .5f;
             currentMov.y = nextYV;
             currentRunMov.y = nextYV;
