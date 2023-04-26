@@ -27,10 +27,10 @@ public class MakerCameraMovement : MonoBehaviour
     // ------------------------------------------------------
 
     private float vertical;
+    private float inversion = -1f;
     private float lateral;
     private float longitudinal;
     private float speedMultiplyer = 1f;
-    private float inversion = -1f;
     private float fovGain;
 
 
