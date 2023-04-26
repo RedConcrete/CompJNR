@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 4a98608167a2d0945abe9050aa3ed8f6
+guid: c5bcc3c0f5f645e4698800fcb02b06ea
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
   - first:
       74: 2207850806306222022
-    second: Noesis Frames
+    second: Jump 3
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -49,11 +49,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Noesis Frames
+      name: Jump 3
       takeName: Noesis Frames
       internalID: 2207850806306222022
       firstFrame: 0
-      lastFrame: 26
+      lastFrame: 36
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -61,10 +61,10 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
-      loopBlend: 1
+      loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1
-      loopBlendPositionXZ: 1
+      loopBlendPositionXZ: 0
       keepOriginalOrientation: 1
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0

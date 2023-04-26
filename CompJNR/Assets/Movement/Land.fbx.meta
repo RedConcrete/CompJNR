@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: cc72440782d95ae40bcad1b09f626b04
+guid: 4a98608167a2d0945abe9050aa3ed8f6
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
   - first:
       74: 2207850806306222022
-    second: Jump
+    second: Land
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -29,7 +29,7 @@ ModelImporter:
       : position error = 3.486202 mm\n\t'Head' : position error = 7.444942 mm\n\t'ShoulderL'
       : position error = 3.094521 mm\n\t'ArmL1' : position error = 4.483892 mm\n\t'ArmL2'
       : position error = 4.972257 mm\n\t'HandL' : position error = 4.679887 mm\n\t'ShoulderR'
-      : position error = 5.755663 mm\n\t'ArmR1' : position error = 4.483838 mm\n\t'ArmR2'
+      : position error = 3.031865 mm\n\t'ArmR1' : position error = 4.483838 mm\n\t'ArmR2'
       : position error = 4.972420 mm\n\t'HandR' : position error = 4.679887 mm\n"
     animationImportErrors: 
     animationImportWarnings: "\nClip 'Noesis Frames' has import animation warnings
@@ -49,24 +49,24 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Jump
+      name: Land
       takeName: Noesis Frames
       internalID: 2207850806306222022
       firstFrame: 0
-      lastFrame: 28
+      lastFrame: 26
       wrapMode: 0
       orientationOffsetY: 0
-      level: -1
+      level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
       loopBlend: 1
       loopBlendOrientation: 1
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
       keepOriginalOrientation: 1
-      keepOriginalPositionY: 0
+      keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
       heightFromFeet: 0
       mirror: 0
