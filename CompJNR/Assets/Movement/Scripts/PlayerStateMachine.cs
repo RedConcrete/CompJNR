@@ -5,194 +5,189 @@ using UnityEngine.InputSystem;
 
 public class PlayerStateMachine : MonoBehaviour
 {
-    PlayerInput _playerInput;
+    // declare reference variables
     CharacterController _characterController;
     Animator _animator;
+    PlayerInput _playerInput; // NOTE: PlayerInput class must be generated from New Input System in Inspector
 
+    // variables to store optimized setter/getter parameter IDs
     int _isWalkingHash;
     int _isRunningHash;
 
+    // variables to store player input values
     Vector2 _currentMovementInput;
     Vector3 _currentMovement;
-    Vector3 _currentRunMov;
     Vector3 _appliedMovement;
-
     bool _isMovementPressed;
     bool _isRunPressed;
 
-    public float _rotaionFactorPerFrame = 15.0f;
-    public float _runMultiplier = 5.0f;
+    // constants
+    float _rotationFactorPerFrame = 15.0f;
+    float _runMultiplier = 4.0f;
     int _zero = 0;
 
-    float _g = -10f;
-    float _GroundedGravity = -.05f;
+    // gravity variables
+    float _gravity = -9.8f;
+    float _groundedGravity = -.05f;
 
+    // jumping variables
     bool _isJumpPressed = false;
-    float _initialJumpV;
-    float _maxJumpH = 5.0f;
-    float _maxJumpTime = 1.0f;
+    float _initialJumpVelocity;
+    float _maxJumpHeight = 5.0f;
+    float _maxJumpTime = .75f;
     bool _isJumping = false;
-
     int _isJumpingHash;
+    int _jumpCountHash;
     bool _requireNewJumpPress = false;
-
     int _jumpCount = 0;
-
     Dictionary<int, float> _initialJumpVelocities = new Dictionary<int, float>();
     Dictionary<int, float> _jumpGravities = new Dictionary<int, float>();
-
     Coroutine _currentJumpResetRoutine = null;
 
-    int _jumpCountHash;
-
+    // state variables
     PlayerBaseState _currentState;
     PlayerStateFactory _states;
 
-    // getters setters
-    public PlayerBaseState CurrentState { get { return _currentState; } set { _currentState = value; } }
-
-    public Animator Animator { get { return _animator; } }
-
-    public CharacterController CharacterController { get { return _characterController; } }
-
-    public Coroutine CurrentJumpResetRoutine { get { return _currentJumpResetRoutine; } set { _currentJumpResetRoutine = value; } }
-
+    // getters and setters
+    public PlayerBaseState CurrentState { get { return _currentState; } set { _currentState = value; }}
+    public Animator Animator { get { return _animator; }}
+    public CharacterController CharacterController { get { return _characterController; }}
+    public Coroutine CurrentJumpResetRoutine { get { return _currentJumpResetRoutine; } set { _currentJumpResetRoutine = value; }}
     public Dictionary<int, float> InitialJumpVelocities { get { return _initialJumpVelocities; } }
-    public Dictionary<int, float> JumpGravities { get { return _jumpGravities; } }
-
-    public int JumpCount { get { return _jumpCount; } set { _jumpCount = value; } }
-    public int IsJumpingHash { get { return _isJumpingHash; } }
-    public int JumpCountHash { get { return _jumpCountHash; } }
-    public int IsWalkingHash { get { return _isWalkingHash; } }
-    public int IsRunningHash { get { return _isRunningHash; } }
-
-    public bool IsMovementPressed { get { return _isMovementPressed; } }
-    public bool IsRunPressed { get { return _isRunPressed; } }
-    public bool RequireNewJumpPress { get { return _requireNewJumpPress; } set { _requireNewJumpPress = value; } }
-    public bool IsJumping { set { _isJumping = value; } }
-    public bool IsJumpPressed { get { return _isJumpPressed; } }
-
+    public Dictionary<int, float> JumpGravities { get { return _jumpGravities; }}
+    public int JumpCount { get { return _jumpCount; } set { _jumpCount = value; }}
+    public int IsWalkingHash { get { return _isWalkingHash; }}
+    public int IsRunningHash { get { return _isRunningHash; }}
+    public int IsJumpingHash { get { return _isJumpingHash; }}
+    public int JumpCountHash { get { return _jumpCountHash; }}
+    public bool IsMovementPressed { get {return _isMovementPressed; }}
+    public bool IsRunPressed { get { return _isRunPressed; }}
+    public bool RequireNewJumpPress { get { return _requireNewJumpPress; } set { _requireNewJumpPress = value; }}
+    public bool IsJumping { set { _isJumping = value; }}
+    public bool IsJumpPressed { get { return _isJumpPressed; }}
+    public float GroundedGravity { get { return _groundedGravity; }}
     public float CurrentMovementY { get { return _currentMovement.y; } set { _currentMovement.y = value; } }
     public float AppliedMovementY { get { return _appliedMovement.y; } set { _appliedMovement.y = value; } }
     public float AppliedMovementX { get { return _appliedMovement.x; } set { _appliedMovement.x = value; } }
     public float AppliedMovementZ { get { return _appliedMovement.z; } set { _appliedMovement.z = value; } }
-    public float RunMultiplier { get { return _runMultiplier; } }
-    public float GroundedGravity { get { return _GroundedGravity; } }
+    public float RunMultiplier { get { return _runMultiplier; }}
+    public Vector2 CurrentMovementInput { get { return _currentMovementInput; }}
+    
 
-    public Vector2 CurrentMovementInput { get { return _currentMovementInput; } }
-
- 
-    private void Awake()
+    // Awake is called earlier than Start in Unity's event life cycle
+    void Awake()
     {
-        _playerInput = new PlayerInput();
-        _characterController = GetComponent<CharacterController>();
-        _animator = GetComponent<Animator>();
+      // initially set reference variables
+      _playerInput = new PlayerInput();
+      _characterController = GetComponent<CharacterController>();
+      _animator = GetComponent<Animator>();
 
-        _states = new PlayerStateFactory(this);
-        _currentState = _states.Grounded();
-        _currentState.EnterState();
+      // setup state
+      _states = new PlayerStateFactory(this);
+      _currentState = _states.Grounded();
+      _currentState.EnterState();
 
-        _isWalkingHash = Animator.StringToHash("isWalking");
-        _isRunningHash = Animator.StringToHash("isRunning");
-        _isJumpingHash = Animator.StringToHash("isJumping");
-        _jumpCountHash = Animator.StringToHash("jumpCount");
+      // set the parameter hash references
+      _isWalkingHash = Animator.StringToHash("isWalking");
+      _isRunningHash = Animator.StringToHash("isRunning");
+      _isJumpingHash = Animator.StringToHash("isJumping");
+      _jumpCountHash = Animator.StringToHash("jumpCount");
 
-        _playerInput.CharacterControls.Move.started += onMovementInput;
-        _playerInput.CharacterControls.Move.canceled += onMovementInput;
-        _playerInput.CharacterControls.Move.performed += onMovementInput;
+      // set the player input callbacks
+      _playerInput.CharacterControls.Move.started += OnMovementInput;
+      _playerInput.CharacterControls.Move.canceled += OnMovementInput;
+      _playerInput.CharacterControls.Move.performed += OnMovementInput;
+      _playerInput.CharacterControls.Run.started += OnRun;
+      _playerInput.CharacterControls.Run.canceled += OnRun;
+      _playerInput.CharacterControls.Jump.started += OnJump;
+      _playerInput.CharacterControls.Jump.canceled += OnJump;
 
-        _playerInput.CharacterControls.Run.started += onRun;
-        _playerInput.CharacterControls.Run.canceled += onRun;
-
-        _playerInput.CharacterControls.Jump.started += onJump;
-        _playerInput.CharacterControls.Jump.canceled += onJump;
-
-        setupJumpV();
+      SetupJumpVariables();
     }
 
-    void setupJumpV()
+    // set the initial velocity and gravity using jump heights and durations
+    void SetupJumpVariables()
     {
-        float timeToApex = _maxJumpTime / 2;
-        _g = (-2 * _maxJumpH) / Mathf.Pow(timeToApex, 2);
-        _initialJumpV = (2 * _maxJumpH) / timeToApex;
+      float timeToApex = _maxJumpTime / 2;
+      _gravity = (-2 * _maxJumpHeight) / Mathf.Pow(timeToApex, 2);
+      _initialJumpVelocity = (2 * _maxJumpHeight) / timeToApex;
+      float secondJumpGravity = (-2 * (_maxJumpHeight + 2)) / Mathf.Pow((timeToApex * 1.25f), 2);
+      float secondJumpInitialVelocity = (2 * (_maxJumpHeight + 2)) / (timeToApex * 1.25f);
+      float thirdJumpGravity = (-2 * (_maxJumpHeight + 4)) / Mathf.Pow((timeToApex * 1.5f), 2);
+      float thirdJumpInitialVelocity = (2 * (_maxJumpHeight + 4)) / (timeToApex * 1.5f);
 
-        float secondJumpG = (-2 * _maxJumpH + 2) / Mathf.Pow((timeToApex * 1.25f), 2);
-        float seconfJumpIniV = (2 * _maxJumpH + 2) / (timeToApex * 1.25f);
-        float thridJumpG = (-2 * _maxJumpH + 4) / Mathf.Pow((timeToApex * 1.5f), 2);
-        float thridJumpIniV = (2 * _maxJumpH + 4) / (timeToApex * 1.5f);
+      _initialJumpVelocities.Add(1, _initialJumpVelocity);
+      _initialJumpVelocities.Add(2, secondJumpInitialVelocity);
+      _initialJumpVelocities.Add(3, thirdJumpInitialVelocity);
 
-        _initialJumpVelocities.Add(1, _initialJumpV);
-        _initialJumpVelocities.Add(2, seconfJumpIniV);
-        _initialJumpVelocities.Add(3, thridJumpIniV);
-
-        _jumpGravities.Add(0, _g);
-        _jumpGravities.Add(1, _g);
-        _jumpGravities.Add(2, secondJumpG);
-        _jumpGravities.Add(3, thridJumpG);
-
+      _jumpGravities.Add(0, _gravity);
+      _jumpGravities.Add(1, _gravity);
+      _jumpGravities.Add(2, secondJumpGravity);
+      _jumpGravities.Add(3, thirdJumpGravity);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        handeRotaion();
-        _currentState.UpdateStates();
-        _characterController.Move(_appliedMovement * Time.deltaTime);
+      HandleRotation();
+      _currentState.UpdateStates();
+      _characterController.Move(_appliedMovement * Time.deltaTime);
     }
 
-    void handeRotaion()
+    void HandleRotation()
     {
-        Vector3 posToLook;
+      Vector3 positionToLookAt;
+      // the change in position our character should point to
+      positionToLookAt.x = _currentMovementInput.x;
+      positionToLookAt.y = _zero;
+      positionToLookAt.z = _currentMovementInput.y;
+      // the current rotation of our character
+      Quaternion currentRotation = transform.rotation;
 
-        posToLook.x = _currentMovement.x;
-        posToLook.y = _zero;
-        posToLook.z = _currentMovement.z;
-
-
-        Quaternion currentRot = transform.rotation;
-
-        if (_isMovementPressed)
-        {
-            Quaternion targetRot = Quaternion.LookRotation(posToLook);
-            transform.rotation = Quaternion.Slerp(currentRot, targetRot, _rotaionFactorPerFrame * Time.deltaTime);
-        }
-
+      if (_isMovementPressed)
+      {
+        // creates a new rotation based on where the player is currently pressing
+        Quaternion targetRotation = Quaternion.LookRotation(positionToLookAt);
+        // rotate the character to face the positionToLookAt            
+        transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, _rotationFactorPerFrame * Time.deltaTime);
+      }
     }
 
-    void onJump(InputAction.CallbackContext context)
+    // callback handler function to set the player input values
+    void OnMovementInput(InputAction.CallbackContext context)
     {
-        _isJumpPressed = context.ReadValueAsButton();
-        _requireNewJumpPress = false;
+      _currentMovementInput = context.ReadValue<Vector2>();
+      _isMovementPressed = _currentMovementInput.x != _zero || _currentMovementInput.y != _zero;
     }
 
-    void onMovementInput(InputAction.CallbackContext context)
+    // callback handler function for jump buttons
+    void OnJump(InputAction.CallbackContext context)
     {
-        _currentMovementInput = context.ReadValue<Vector2>();
-        _currentMovement.x = _currentMovementInput.x;
-        _currentMovement.z = _currentMovementInput.y;
-        _currentRunMov.x = _currentMovementInput.x * _runMultiplier;
-        _currentRunMov.z = _currentMovementInput.y * _runMultiplier;
-        _isMovementPressed = _currentMovementInput.x != 0 || _currentMovementInput.y != 0;
+      _isJumpPressed = context.ReadValueAsButton();
+      _requireNewJumpPress = false;
     }
 
-    void onRun(InputAction.CallbackContext context)
+    // callback handler function for run buttons
+    void OnRun(InputAction.CallbackContext context)
     {
-        _isRunPressed = context.ReadValueAsButton();
+      _isRunPressed = context.ReadValueAsButton();
     }
 
-    private void OnEnable()
+    void OnEnable()
     {
-        _playerInput.CharacterControls.Enable();
+      // enable the character controls action map
+      _playerInput.CharacterControls.Enable();
     }
 
-    private void OnDisable()
+    void OnDisable()
     {
-        _playerInput.CharacterControls.Disable();
+      // disable the character controls action map
+      _playerInput.CharacterControls.Disable();
     }
 }
