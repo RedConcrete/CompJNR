@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Photon.Pun;
 
 public class PlayerStateMachine : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class PlayerStateMachine : MonoBehaviour
     CharacterController _characterController;
     Animator _animator;
     PlayerInput _playerInput; // NOTE: PlayerInput class must be generated from New Input System in Inspector
+    PhotonView _view;
 
     // variables to store player input values
     Vector2 _currentMovementInput;
@@ -86,6 +88,7 @@ public class PlayerStateMachine : MonoBehaviour
       _playerInput = new PlayerInput();
       _characterController = GetComponent<CharacterController>();
       _animator = GetComponent<Animator>();
+      _view = GetComponent<PhotonView>();
 
       // setup state
       _states = new PlayerStateFactory(this);
@@ -135,39 +138,44 @@ public class PlayerStateMachine : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      _characterController.Move(_appliedMovement * Time.deltaTime);
+            _characterController.Move(_appliedMovement * Time.deltaTime);
     }
 
     // Update is called once per frame
     void Update()
     {
-      HandleRotation();
-      _currentState.UpdateStates();
+        if (_view.IsMine)
+        {
+            HandleRotation();
+            _currentState.UpdateStates();
 
-      _cameraRelativeMovement = ConvertToCameraSpace(_appliedMovement);
-      _characterController.Move(_cameraRelativeMovement * Time.deltaTime);
+            _cameraRelativeMovement = ConvertToCameraSpace(_appliedMovement);
+            _characterController.Move(_cameraRelativeMovement * Time.deltaTime);
+        }
     }
 
     Vector3 ConvertToCameraSpace(Vector3 vectorToRotate)
     {
-        float currentYValue = vectorToRotate.y;
         
-        Vector3 cameraForward = Camera.main.transform.forward;
-        Vector3 cameraRight = Camera.main.transform.right;
+            float currentYValue = vectorToRotate.y;
 
-        cameraForward.y = 0;
-        cameraRight.y = 0;
+            Vector3 cameraForward = Camera.main.transform.forward;
+            Vector3 cameraRight = Camera.main.transform.right;
 
-        cameraForward = cameraForward.normalized;
-        cameraRight = cameraRight.normalized;
+            cameraForward.y = 0;
+            cameraRight.y = 0;
 
-        Vector3 cameraForwardZProdukt = vectorToRotate.z * cameraForward;
-        Vector3 cameraRightXProdukt = vectorToRotate.x * cameraRight;
-        
-        
-        Vector3 vectorRotatedToCameraSpace = cameraForwardZProdukt + cameraRightXProdukt;
-        vectorRotatedToCameraSpace.y = currentYValue;
-        return vectorRotatedToCameraSpace;
+            cameraForward = cameraForward.normalized;
+            cameraRight = cameraRight.normalized;
+
+            Vector3 cameraForwardZProdukt = vectorToRotate.z * cameraForward;
+            Vector3 cameraRightXProdukt = vectorToRotate.x * cameraRight;
+
+
+            Vector3 vectorRotatedToCameraSpace = cameraForwardZProdukt + cameraRightXProdukt;
+            vectorRotatedToCameraSpace.y = currentYValue;
+            return vectorRotatedToCameraSpace;
+       
     }
 
     void HandleRotation()
@@ -192,8 +200,8 @@ public class PlayerStateMachine : MonoBehaviour
     // callback handler function to set the player input values
     void OnMovementInput(InputAction.CallbackContext context)
     {
-      _currentMovementInput = context.ReadValue<Vector2>();
-      _isMovementPressed = _currentMovementInput.x != _zero || _currentMovementInput.y != _zero;
+         _currentMovementInput =  context.ReadValue<Vector2>();
+         _isMovementPressed = _currentMovementInput.x != _zero || _currentMovementInput.y != _zero;
     }
 
     // callback handler function for jump buttons
