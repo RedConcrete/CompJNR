@@ -27,14 +27,12 @@ public class MakerManager : MonoBehaviour
             {
                 PlaceObject();
             }
-
         }
     }
 
     public void PlaceObject()
     {
         pendingObject = null;
-
     }
 
 
@@ -51,12 +49,6 @@ public class MakerManager : MonoBehaviour
     public void SelectObject(int index)
     {
         pendingObject = Instantiate(objects[index], pos, transform.rotation);
-    }
-
-
-    public void ToggleGrid()
-    {
-
     }
 
     float RoundToNearestGrid(float pos)
