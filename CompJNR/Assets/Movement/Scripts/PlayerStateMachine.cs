@@ -19,6 +19,7 @@ public class PlayerStateMachine : MonoBehaviour
     Vector3 _cameraRelativeMovement;
     bool _isMovementPressed;
     bool _isRunPressed;
+    public Camera _playerCamera;
 
     // constants
     float _rotationFactorPerFrame = 15.0f;
@@ -87,7 +88,8 @@ public class PlayerStateMachine : MonoBehaviour
       // initially set reference variables
       _playerInput = new PlayerInput();
       _characterController = GetComponent<CharacterController>();
-      _animator = GetComponent<Animator>();
+        _playerCamera = GetComponentInChildren<Camera>();
+        _animator = GetComponent<Animator>();
       _view = GetComponent<PhotonView>();
 
       // setup state
@@ -139,6 +141,11 @@ public class PlayerStateMachine : MonoBehaviour
     void Start()
     {
             _characterController.Move(_appliedMovement * Time.deltaTime);
+
+        if (!_view.IsMine)
+        {
+            _playerCamera.gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame
