@@ -187,7 +187,7 @@ GameObject:
   - component: {fileID: 49213437}
   - component: {fileID: 49213438}
   m_Layer: 0
-  m_Name: CreateAndJoinRooms
+  m_Name: MultiplayerObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
