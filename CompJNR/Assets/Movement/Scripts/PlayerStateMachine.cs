@@ -88,8 +88,7 @@ public class PlayerStateMachine : MonoBehaviour
       // initially set reference variables
       _playerInput = new PlayerInput();
       _characterController = GetComponent<CharacterController>();
-        _playerCamera = GetComponentInChildren<Camera>();
-        _animator = GetComponent<Animator>();
+      _animator = GetComponent<Animator>();
       _view = GetComponent<PhotonView>();
 
       // setup state
@@ -140,11 +139,11 @@ public class PlayerStateMachine : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-            _characterController.Move(_appliedMovement * Time.deltaTime);
+        _characterController.Move(_appliedMovement * Time.deltaTime);
 
         if (!_view.IsMine)
         {
-            _playerCamera.gameObject.SetActive(false);
+            _playerCamera.enabled = false;
         }
     }
 
