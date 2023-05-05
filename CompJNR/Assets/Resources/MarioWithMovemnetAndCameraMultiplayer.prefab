@@ -992,7 +992,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 37b61c907afdbf146a9b10e738ef6e25, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 37b61c907afdbf146a9b10e738ef6e25, type: 3}
       propertyPath: m_Controller
@@ -1098,6 +1098,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerCamera: {fileID: 760385878}
+  _playerFreeLookCamera: {fileID: 2141979743}
 --- !u!114 &2917725078405547337
 MonoBehaviour:
   m_ObjectHideFlags: 0

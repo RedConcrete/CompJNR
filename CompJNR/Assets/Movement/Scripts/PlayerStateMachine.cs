@@ -4,11 +4,14 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Photon.Pun;
 using System;
+using Cinemachine;
 
 public class PlayerStateMachine : MonoBehaviour
 {
 
     [SerializeField] private Camera _playerCamera;
+    [SerializeField] private CinemachineFreeLook _playerFreeLookCamera;
+
     // declare reference variables
     CharacterController _characterController;
     Animator _animator;
@@ -150,6 +153,7 @@ public class PlayerStateMachine : MonoBehaviour
         if (!_view.IsMine)
         {
            _playerCamera.enabled = false;
+           _playerFreeLookCamera.enabled = false;
            _audioListener.enabled = false;
         }
     }

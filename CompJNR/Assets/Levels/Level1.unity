@@ -6017,6 +6017,67 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2773221329100139733, guid: 7aeb5182abfc4534c9904baf3e2124ee, type: 3}
+--- !u!1001 &145375210
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 339459111, guid: 69be13beda984414096c0b222dc27482, type: 3}
+      propertyPath: sceneViewId
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8116283493459098612, guid: 69be13beda984414096c0b222dc27482, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8116283493459098612, guid: 69be13beda984414096c0b222dc27482, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8116283493459098612, guid: 69be13beda984414096c0b222dc27482, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 136
+      objectReference: {fileID: 0}
+    - target: {fileID: 8116283493459098612, guid: 69be13beda984414096c0b222dc27482, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8116283493459098612, guid: 69be13beda984414096c0b222dc27482, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8116283493459098612, guid: 69be13beda984414096c0b222dc27482, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8116283493459098612, guid: 69be13beda984414096c0b222dc27482, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8116283493459098612, guid: 69be13beda984414096c0b222dc27482, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8116283493459098612, guid: 69be13beda984414096c0b222dc27482, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8116283493459098612, guid: 69be13beda984414096c0b222dc27482, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8116283493459098612, guid: 69be13beda984414096c0b222dc27482, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8928672655071945038, guid: 69be13beda984414096c0b222dc27482, type: 3}
+      propertyPath: m_Name
+      value: MarioWithMovemnetAndCameraMultiplayer
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 69be13beda984414096c0b222dc27482, type: 3}
 --- !u!1 &175365206
 GameObject:
   m_ObjectHideFlags: 0
@@ -6543,7 +6604,7 @@ Transform:
   - {fileID: 2096916482}
   - {fileID: 803151149}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &277649106
 Mesh:
@@ -9274,7 +9335,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &982752854 stripped
 Transform:
@@ -10354,7 +10415,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1220223766
 MonoBehaviour:
@@ -24215,7 +24276,7 @@ Transform:
   - {fileID: 1489635903}
   - {fileID: 1654939756}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1828397943 stripped
 Transform:
@@ -24842,64 +24903,3 @@ Transform:
   m_Father: {fileID: 233579645}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: -46.89, z: 0}
---- !u!1001 &2172995044078533491
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 339459111, guid: 69be13beda984414096c0b222dc27482, type: 3}
-      propertyPath: sceneViewId
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8116283493459098612, guid: 69be13beda984414096c0b222dc27482, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8116283493459098612, guid: 69be13beda984414096c0b222dc27482, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8116283493459098612, guid: 69be13beda984414096c0b222dc27482, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 136
-      objectReference: {fileID: 0}
-    - target: {fileID: 8116283493459098612, guid: 69be13beda984414096c0b222dc27482, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8116283493459098612, guid: 69be13beda984414096c0b222dc27482, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8116283493459098612, guid: 69be13beda984414096c0b222dc27482, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8116283493459098612, guid: 69be13beda984414096c0b222dc27482, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8116283493459098612, guid: 69be13beda984414096c0b222dc27482, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8116283493459098612, guid: 69be13beda984414096c0b222dc27482, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8116283493459098612, guid: 69be13beda984414096c0b222dc27482, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8116283493459098612, guid: 69be13beda984414096c0b222dc27482, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8928672655071945038, guid: 69be13beda984414096c0b222dc27482, type: 3}
-      propertyPath: m_Name
-      value: MarioWithMovemnetAndCamera
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 69be13beda984414096c0b222dc27482, type: 3}
