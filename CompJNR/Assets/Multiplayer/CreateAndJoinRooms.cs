@@ -18,6 +18,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
     public void JoinRoom()
     {
         PhotonNetwork.JoinRoom(joinInput.text);
+        Debug.Log($"Cloud Region : {PhotonNetwork.CloudRegion}");
     }
 
     public override void OnJoinedRoom()

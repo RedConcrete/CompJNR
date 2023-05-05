@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Photon.Pun;
+using System;
 
 public class PlayerStateMachine : MonoBehaviour
 {
+
+    [SerializeField] private Camera _playerCamera;
     // declare reference variables
     CharacterController _characterController;
     Animator _animator;
@@ -19,7 +22,7 @@ public class PlayerStateMachine : MonoBehaviour
     Vector3 _cameraRelativeMovement;
     bool _isMovementPressed;
     bool _isRunPressed;
-    public Camera _playerCamera;
+    AudioListener _audioListener;
 
     // constants
     float _rotationFactorPerFrame = 15.0f;
@@ -83,16 +86,18 @@ public class PlayerStateMachine : MonoBehaviour
     // Awake is called earlier than Start in Unity's event life cycle
     void Awake()
     {
-        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+      UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+      Cursor.visible = false;
       // initially set reference variables
       _playerInput = new PlayerInput();
       _characterController = GetComponent<CharacterController>();
       _animator = GetComponent<Animator>();
       _view = GetComponent<PhotonView>();
+      _audioListener = _playerCamera.GetComponent<AudioListener>();
 
-      // setup state
-      _states = new PlayerStateFactory(this);
+
+        // setup state
+        _states = new PlayerStateFactory(this);
       _currentState = _states.Grounded();
       _currentState.EnterState();
 
@@ -113,6 +118,7 @@ public class PlayerStateMachine : MonoBehaviour
       _playerInput.CharacterControls.Jump.canceled += OnJump;
 
       SetupJumpVariables();
+
     }
 
     // set the initial velocity and gravity using jump heights and durations
@@ -143,7 +149,8 @@ public class PlayerStateMachine : MonoBehaviour
 
         if (!_view.IsMine)
         {
-            _playerCamera.enabled = false;
+           _playerCamera.enabled = false;
+           _audioListener.enabled = false;
         }
     }
 
