@@ -17,6 +17,7 @@ public class PlayerStateMachine : MonoBehaviour
     Animator _animator;
     PlayerInput _playerInput; // NOTE: PlayerInput class must be generated from New Input System in Inspector
     PhotonView _view;
+    public GameObject respawnPosition;
 
     // variables to store player input values
     Vector2 _currentMovementInput;
@@ -220,6 +221,17 @@ public class PlayerStateMachine : MonoBehaviour
     {
         // disable the character controls action map
         _playerInput.CharacterControls.Disable();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Water"))
+        {
+            // Send the player back to the respawn position
+            Debug.Log(gameObject.name);
+            transform.position = respawnPosition.transform.position;
+            
+        }
     }
 
     // getters and setters
