@@ -18,6 +18,8 @@ public class PlayerStateMachine : MonoBehaviour
     PlayerInput _playerInput; // NOTE: PlayerInput class must be generated from New Input System in Inspector
     PhotonView _view;
     public GameObject respawnPosition;
+    public GameObject gameMenu;
+    public GameObject wonGame;
 
     // variables to store player input values
     Vector2 _currentMovementInput;
@@ -27,6 +29,7 @@ public class PlayerStateMachine : MonoBehaviour
     bool _isMovementPressed;
     bool _isRunPressed;
     AudioListener _audioListener;
+
 
     // constants
     float _rotationFactorPerFrame = 15.0f;
@@ -231,6 +234,12 @@ public class PlayerStateMachine : MonoBehaviour
             Debug.Log(gameObject.name);
             transform.position = respawnPosition.transform.position;
             
+        }
+        if(other.gameObject.CompareTag("Flag"))
+        {
+            gameMenu.SetActive(!gameMenu.activeSelf);
+            wonGame.SetActive(!wonGame.activeSelf);
+            _playerInput.CharacterControls.Disable();
         }
     }
 
