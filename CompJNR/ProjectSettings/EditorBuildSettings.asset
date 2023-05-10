@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Levels/LevelNew.unity
     guid: 02b283ec1d6d4ee47a656bedb277f390
+  - enabled: 1
+    path: Assets/Maker/Scene/MakerWithLevel1.unity
+    guid: b982456cdce61a64e9bdffe3c7ad7427
   m_configObjects: {}
