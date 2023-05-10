@@ -1099,6 +1099,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerCamera: {fileID: 760385878}
   _playerFreeLookCamera: {fileID: 2141979743}
+  respawnPosition: {fileID: 0}
+  gameMenu: {fileID: 0}
+  wonGame: {fileID: 0}
 --- !u!114 &2917725078405547337
 MonoBehaviour:
   m_ObjectHideFlags: 0
