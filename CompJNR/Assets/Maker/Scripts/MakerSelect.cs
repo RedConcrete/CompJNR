@@ -39,10 +39,12 @@ public class MakerSelect : MonoBehaviour
     {
         if (obj == selectedObject) return;
         if (selectedObject != null) Deselect();
+        /*
         Outline outline = obj.GetComponent<Outline>();
         if (outline == null) obj.AddComponent<Outline>();
         else outline.enabled = true;
         selectedObject = obj;
+        */
     }
 
     private void Deselect()
