@@ -13,6 +13,7 @@ public class Switch : MonoBehaviour
     private bool buttonActive;
     private bool makerActive;
     private bool marioActive;
+    private bool mouseActive;
 
     public void SwitchChar()
     {
@@ -26,8 +27,22 @@ public class Switch : MonoBehaviour
         buttonActive = !buttonActive;
         makerActive = !makerActive;
         marioActive = !marioActive;
+        mouseActive = !mouseActive;
+        //OnOffMouse();
     }
 
+    private void OnOffMouse()
+    {
+        Cursor.visible = mouseActive;
+        if (mouseActive)
+        {
+            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            UnityEngine.Cursor.lockState = CursorLockMode.None;
+        }
+    }
 
 
 }
