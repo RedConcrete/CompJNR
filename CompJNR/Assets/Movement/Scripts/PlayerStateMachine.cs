@@ -20,6 +20,7 @@ public class PlayerStateMachine : MonoBehaviour
     public GameObject respawnPosition;
     public GameObject gameMenu;
     public GameObject wonGame;
+    public GameObject marioPreFab;
 
     // variables to store player input values
     Vector2 _currentMovementInput;
@@ -33,7 +34,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     // constants
     float _rotationFactorPerFrame = 15.0f;
-    float _runMultiplier = 4.0f;
+    public float _runMultiplier = 4.0f;
     int _zero = 0;
 
     // jumping variables
@@ -232,7 +233,8 @@ public class PlayerStateMachine : MonoBehaviour
         {
             // Send the player back to the respawn position
             Debug.Log(gameObject.name);
-            transform.position = respawnPosition.transform.position;
+            //Destroy(gameObject);
+            //Instantiate(marioPreFab,respawnPosition.gameObject.transform);
             
         }
         if(other.gameObject.CompareTag("Flag"))

@@ -30,7 +30,6 @@ public class ExitGameOrRoom : MonoBehaviourPunCallbacks
     public void LeaveRoom()
     {
         PhotonNetwork.LeaveRoom();
-
     }
 
     public override void OnLeftRoom()
@@ -57,6 +56,13 @@ public class ExitGameOrRoom : MonoBehaviourPunCallbacks
     void OnEscapeShowGameMenu()
     {
         gameMenu.SetActive(!gameMenu.activeSelf);
+    }
+
+    public void ExitMaker()
+    {
+        SceneManager.UnloadSceneAsync(3);
+        SceneManager.LoadScene(1);
+        
     }
 
 }
