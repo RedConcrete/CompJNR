@@ -35,6 +35,7 @@ public class PlayerStateMachine : MonoBehaviour
     // constants
     float _rotationFactorPerFrame = 15.0f;
     public float _runMultiplier = 4.0f;
+    public float _walkMultiplier = 4.0f;
     int _zero = 0;
 
     // jumping variables
@@ -269,5 +270,6 @@ public class PlayerStateMachine : MonoBehaviour
     public float AppliedMovementX { get { return _appliedMovement.x; } set { _appliedMovement.x = value; } }
     public float AppliedMovementZ { get { return _appliedMovement.z; } set { _appliedMovement.z = value; } }
     public float RunMultiplier { get { return _runMultiplier; } }
+    public float WalkMultiplier { get { return _walkMultiplier; } }
     public Vector2 CurrentMovementInput { get { return _currentMovementInput; } }
 }
