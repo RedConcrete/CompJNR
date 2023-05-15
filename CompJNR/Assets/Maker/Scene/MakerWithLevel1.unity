@@ -1152,6 +1152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   hight: 3
+  isInverted: 0
 --- !u!64 &153423052
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5310,6 +5311,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   hight: 3
+  isInverted: 1
 --- !u!64 &392220732
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -11485,8 +11487,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1777650235396676670, guid: 2370e04cefc31af4eb9c2d47dd57e993, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1777650235396676670, guid: 2370e04cefc31af4eb9c2d47dd57e993, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6576071724346852863, guid: 2370e04cefc31af4eb9c2d47dd57e993, type: 3}
       propertyPath: m_RootOrder
