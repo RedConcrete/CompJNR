@@ -1102,6 +1102,8 @@ MonoBehaviour:
   respawnPosition: {fileID: 0}
   gameMenu: {fileID: 0}
   wonGame: {fileID: 0}
+  marioPreFab: {fileID: 0}
+  _runMultiplier: 4
 --- !u!114 &2917725078405547337
 MonoBehaviour:
   m_ObjectHideFlags: 0
