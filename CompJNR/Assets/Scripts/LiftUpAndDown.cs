@@ -8,6 +8,9 @@ public class LiftUpAndDown : MonoBehaviour
     public float speed = 5f;
     [SerializeField]
     public float hight = 0.5f;
+    [SerializeField]
+    public bool isInverted;
+    private float newY;
     Vector3 pos;
     private void Start()
     {
@@ -21,7 +24,14 @@ public class LiftUpAndDown : MonoBehaviour
 
     void MoveLift()
     {
-        float newY = Mathf.Sin(Time.time * speed) * hight + pos.y;
+        if (isInverted)
+        {
+            newY = Mathf.Sin(Time.time * speed) * hight + pos.y;
+        }
+        else
+        {
+            newY = Mathf.Cos(Time.time * speed) * hight + pos.y;
+        }
         transform.position = new Vector3(transform.position.x, newY, transform.position.z);
     }
 

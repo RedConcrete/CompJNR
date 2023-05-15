@@ -1152,6 +1152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   hight: 3
+  isInverted: 0
 --- !u!64 &153423052
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5310,6 +5311,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   hight: 3
+  isInverted: 1
 --- !u!64 &392220732
 MeshCollider:
   m_ObjectHideFlags: 0
