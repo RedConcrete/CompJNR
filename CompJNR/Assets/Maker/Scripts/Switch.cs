@@ -8,38 +8,41 @@ public class Switch : MonoBehaviour
     public GameObject mainCamera;
     public GameObject maker;
     public GameObject mario;
+    public GameObject gameMenu;
 
     private bool cameraActive;
     private bool buttonActive;
     private bool makerActive;
     private bool marioActive;
-    private bool mouseActive;
 
     public void SwitchChar()
     {
+        marioActive = !marioActive;
+        buttonActive = !buttonActive;
+        cameraActive = !cameraActive;
+        makerActive = !makerActive;
+
         mainCamera.gameObject.SetActive(!cameraActive);
         firstButton.gameObject.SetActive(!buttonActive);
         maker.gameObject.SetActive(!makerActive);
-
+        gameMenu.gameObject.SetActive(false);
+        
         mario.gameObject.SetActive(marioActive);
 
-        cameraActive = !cameraActive;
-        buttonActive = !buttonActive;
-        makerActive = !makerActive;
-        marioActive = !marioActive;
-        mouseActive = !mouseActive;
         //OnOffMouse();
     }
 
     private void OnOffMouse()
     {
-        Cursor.visible = mouseActive;
-        if (mouseActive)
+        
+        if (marioActive)
         {
+            Cursor.visible = true;
             UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         }
         else
         {
+            Cursor.visible = true;
             UnityEngine.Cursor.lockState = CursorLockMode.None;
         }
     }
