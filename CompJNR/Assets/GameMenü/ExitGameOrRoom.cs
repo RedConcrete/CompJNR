@@ -11,6 +11,7 @@ public class ExitGameOrRoom : MonoBehaviourPunCallbacks
     PlayerInput _playerInput;
     public GameObject gameMenu;
     public int sceneID;
+    bool mouseActive;
 
     private void Awake()
     {
@@ -56,6 +57,11 @@ public class ExitGameOrRoom : MonoBehaviourPunCallbacks
     void OnEscapeShowGameMenu()
     {
         gameMenu.SetActive(!gameMenu.activeSelf);
+        Cursor.visible = !mouseActive;
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
+
+        mouseActive = !mouseActive;
+
     }
 
     public void ExitMaker()
