@@ -37,7 +37,7 @@ public class PlayFabLogin : MonoBehaviour
 
     private void OnLoginCustomSuccess(LoginResult result)
     {
-
+        Debug.Log("");
     }
     private void OnFailure(PlayFabError error)
     {
