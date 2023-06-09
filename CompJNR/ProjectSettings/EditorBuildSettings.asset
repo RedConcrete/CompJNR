@@ -9,11 +9,14 @@ EditorBuildSettings:
     path: Assets/MainMenu/MainMenu.unity
     guid: f2f048943bbf6594096bcfcf6d1a8e13
   - enabled: 1
-    path: Assets/Multiplayer/Loading.unity
+    path: Assets/Multiplayer/Scencs/SetName.unity
+    guid: 5f6599a0779821547867ed46eaa0d640
+  - enabled: 1
+    path: Assets/Multiplayer/Scencs/Loading.unity
     guid: e386178e881c57a4a98060d90039325e
   - enabled: 1
-    path: Assets/Multiplayer/LobbyCreate.unity
-    guid: 5f6599a0779821547867ed46eaa0d640
+    path: Assets/Multiplayer/Scencs/Lobby.unity
+    guid: c50846c0ca5170c4ea0f9c472f2cf338
   - enabled: 1
     path: Assets/Levels/LevelNew.unity
     guid: 02b283ec1d6d4ee47a656bedb277f390
