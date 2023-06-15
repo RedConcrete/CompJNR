@@ -107,11 +107,13 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         {
             PlayerItem newPlayerItem = Instantiate(playerItemPrefab, playerItemParent);
             newPlayerItem.SetPlayerInfo(player.Value);
+
+            Console.WriteLine("Playername: " + player.Value);
+
             if (player.Value == PhotonNetwork.LocalPlayer)
             {
                 newPlayerItem.ApplyLocalChanges();
             }
-
 
             playerItemsList.Add(newPlayerItem);
         }
