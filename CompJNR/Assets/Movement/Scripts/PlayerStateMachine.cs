@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using Photon.Pun;
 using System;
 using Cinemachine;
+using TMPro;
 
 public class PlayerStateMachine : MonoBehaviour
 {
@@ -63,6 +64,9 @@ public class PlayerStateMachine : MonoBehaviour
 
     // gravity variables
     float _gravity = -9.8f;
+
+    // trigger variables
+    bool playerHasFallen;
 
     // Awake is called earlier than Start in Unity's event life cycle
     void Awake()
@@ -143,14 +147,24 @@ public class PlayerStateMachine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_view.IsMine)
+        if (!playerHasFallen)
         {
-            HandleRotation();
-            _currentState.UpdateStates();
+            if (_view.IsMine)
+            {
+                HandleRotation();
+                _currentState.UpdateStates();
 
-            _cameraRelativeMovement = ConvertToCameraSpace(_appliedMovement);
+                _cameraRelativeMovement = ConvertToCameraSpace(_appliedMovement);
+            }
+            _characterController.Move(_cameraRelativeMovement * Time.deltaTime);
         }
-        _characterController.Move(_cameraRelativeMovement * Time.deltaTime);
+        else
+        {
+            Debug.Log("playerHasFallen: " + playerHasFallen);
+            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, respawnPosition.transform.position, 10 * Time.deltaTime);
+    
+            playerHasFallen = false;
+        }
     }
 
     Vector3 ConvertToCameraSpace(Vector3 vectorToRotate)
@@ -233,11 +247,13 @@ public class PlayerStateMachine : MonoBehaviour
         if (other.gameObject.CompareTag("Water"))
         {
             // Send the player back to the respawn position
-            Debug.Log(gameObject.name);
+            //Debug.Log(gameObject.name);
+            playerHasFallen = true;
             //Destroy(gameObject);
             //Instantiate(marioPreFab,respawnPosition.gameObject.transform);
             
         }
+
         if(other.gameObject.CompareTag("Flag"))
         {
             gameMenu.SetActive(!gameMenu.activeSelf);
