@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using Photon.Pun;
 using Photon.Realtime;
+using System;
 
 public class PlayerItem : MonoBehaviour
 {
@@ -13,8 +14,8 @@ public class PlayerItem : MonoBehaviour
     Image backgroundImage;
     public Color highlightColor;
 
-    public GameObject leftArrowButton;
-    public GameObject rightArrowButton;
+   // public GameObject leftArrowButton;
+   // public GameObject rightArrowButton;
 
 
     private void Start()
@@ -29,9 +30,10 @@ public class PlayerItem : MonoBehaviour
 
     public void ApplyLocalChanges()
     {
-        backgroundImage.color = highlightColor;
-        leftArrowButton.SetActive(true);
-        rightArrowButton.SetActive(true);
+    ;
+        // backgroundImage.color = highlightColor;
+        // leftArrowButton.SetActive(true);
+        // rightArrowButton.SetActive(true);
     }
 
 }
