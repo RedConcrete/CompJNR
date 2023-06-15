@@ -716,15 +716,15 @@ PrefabInstance:
       objectReference: {fileID: 1489396777}
     - target: {fileID: 1344964235, guid: 69be13beda984414096c0b222dc27482, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.0711516
+      value: -0.07115163
       objectReference: {fileID: 0}
     - target: {fileID: 1344964235, guid: 69be13beda984414096c0b222dc27482, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.0060625696
+      value: -0.00606257
       objectReference: {fileID: 0}
     - target: {fileID: 1344964235, guid: 69be13beda984414096c0b222dc27482, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.084682
+      value: -0.08468197
       objectReference: {fileID: 0}
     - target: {fileID: 8116283493459098612, guid: 69be13beda984414096c0b222dc27482, type: 3}
       propertyPath: m_RootOrder
@@ -773,6 +773,10 @@ PrefabInstance:
     - target: {fileID: 8928672655071945038, guid: 69be13beda984414096c0b222dc27482, type: 3}
       propertyPath: m_Name
       value: MarioWithMovemnetAndCameraMultiplayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 8928672655071945038, guid: 69be13beda984414096c0b222dc27482, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69be13beda984414096c0b222dc27482, type: 3}
