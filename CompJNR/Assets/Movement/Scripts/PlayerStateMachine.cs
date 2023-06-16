@@ -160,10 +160,8 @@ public class PlayerStateMachine : MonoBehaviour
         }
         else
         {
-            Debug.Log("playerHasFallen: " + playerHasFallen);
-            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, respawnPosition.transform.position, 10 * Time.deltaTime);
-    
-            playerHasFallen = false;
+            moveCharToPos(respawnPosition.transform.position);
+            
         }
     }
 
@@ -189,6 +187,16 @@ public class PlayerStateMachine : MonoBehaviour
         vectorRotatedToCameraSpace.y = currentYValue;
         return vectorRotatedToCameraSpace;
 
+    }
+
+    void moveCharToPos(Vector3 newPos)
+    {
+        _characterController.enabled = false;
+
+        gameObject.transform.position = newPos;
+
+        _characterController.enabled = true;
+        playerHasFallen = false;
     }
 
     void HandleRotation()
