@@ -71,8 +71,8 @@ public class PlayerStateMachine : MonoBehaviour
     // Awake is called earlier than Start in Unity's event life cycle
     void Awake()
     {
-        //UnityEngine.Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.visible = false;
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         // initially set reference variables
         _playerInput = new PlayerInput();
         _characterController = GetComponent<CharacterController>();
