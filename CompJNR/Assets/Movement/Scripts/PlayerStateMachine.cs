@@ -19,6 +19,7 @@ public class PlayerStateMachine : MonoBehaviour
     PlayerInput _playerInput; // NOTE: PlayerInput class must be generated from New Input System in Inspector
     PhotonView _view;
     public GameObject respawnPosition;
+    public GameObject pipeSpawnPosition;
     public GameObject gameMenu;
     public GameObject wonGame;
     public GameObject marioPreFab;
@@ -72,6 +73,7 @@ public class PlayerStateMachine : MonoBehaviour
     void Awake()
     {
         respawnPosition = GameObject.Find("RespawnPos");
+        pipeSpawnPosition = GameObject.Find("PipeSpawnPosition");
         
 
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
@@ -276,6 +278,11 @@ public class PlayerStateMachine : MonoBehaviour
             gameMenu.SetActive(!gameMenu.activeSelf);
             wonGame.SetActive(!wonGame.activeSelf);
             _playerInput.CharacterControls.Disable();
+        }
+
+        if (other.gameObject.CompareTag("Pipe"))
+        {
+            moveCharToPos(pipeSpawnPosition.transform.position);
         }
     }
 

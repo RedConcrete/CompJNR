@@ -8,6 +8,7 @@ TagManager:
   - Water
   - Bullet
   - Flag
+  - Pipe
   layers:
   - Default
   - TransparentFX
