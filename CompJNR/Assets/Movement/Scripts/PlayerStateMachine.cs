@@ -69,9 +69,18 @@ public class PlayerStateMachine : MonoBehaviour
     // trigger variables
     bool playerHasFallen;
 
+    // Sounds
+    public AudioSource coinSound;
+
+
+    CoinBehaviour coinBehaviour = new CoinBehaviour();
+
     // Awake is called earlier than Start in Unity's event life cycle
     void Awake()
     {
+
+        coinSound = GetComponent<AudioSource>();
+
         respawnPosition = GameObject.Find("RespawnPos");
         pipeSpawnPosition = GameObject.Find("PipeSpawnPosition");
         
@@ -284,6 +293,14 @@ public class PlayerStateMachine : MonoBehaviour
         {
             moveCharToPos(pipeSpawnPosition.transform.position);
         }
+
+        if (other.gameObject.CompareTag("Coin"))
+        {
+            coinSound.Play();
+            coinBehaviour.collectCoin(other.gameObject);
+            
+        }
+
     }
 
     // getters and setters
