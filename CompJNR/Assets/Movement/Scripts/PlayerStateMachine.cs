@@ -71,6 +71,9 @@ public class PlayerStateMachine : MonoBehaviour
     // Awake is called earlier than Start in Unity's event life cycle
     void Awake()
     {
+        respawnPosition = GameObject.Find("RespawnPos");
+        
+
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         // initially set reference variables
@@ -131,6 +134,7 @@ public class PlayerStateMachine : MonoBehaviour
         _jumpGravities.Add(3, thirdJumpGravity);
     }
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -160,6 +164,7 @@ public class PlayerStateMachine : MonoBehaviour
         }
         else
         {
+            
             moveCharToPos(respawnPosition.transform.position);
             
         }
@@ -191,12 +196,16 @@ public class PlayerStateMachine : MonoBehaviour
 
     void moveCharToPos(Vector3 newPos)
     {
-        _characterController.enabled = false;
+        if (newPos != null)
+        {
+            _characterController.enabled = false;
 
-        gameObject.transform.position = newPos;
+            gameObject.transform.position = newPos;
 
-        _characterController.enabled = true;
-        playerHasFallen = false;
+            _characterController.enabled = true;
+            playerHasFallen = false;
+        }
+        
     }
 
     void HandleRotation()
