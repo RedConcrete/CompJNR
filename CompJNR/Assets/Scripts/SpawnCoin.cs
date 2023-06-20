@@ -1,6 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using Photon;
+using Photon.Pun;
+using System;
 
 public class SpawnCoin : MonoBehaviour
 {
@@ -11,6 +15,8 @@ public class SpawnCoin : MonoBehaviour
 
     public Vector3 size;
 
+    private TMP_Text coinText;
+
 
     private void Start()
     {
@@ -19,12 +25,19 @@ public class SpawnCoin : MonoBehaviour
 
     public void SpawnCoinOnRandomePos()
     {
-        for (int i = 0; i <= coinAmount; i++)
+        if (PhotonNetwork.IsMasterClient)
         {
-            Vector3 pos = transform.localPosition + new Vector3(Random.Range(-size.x / 2, size.x / 2), 0, Random.Range(-size.z / 2, size.z / 2));
-            Instantiate(coinPrefab, pos, Quaternion.identity);
+            for (int i = 0; i <= coinAmount; i++)
+            {
+                Vector3 pos = transform.localPosition + new Vector3(0, 0, UnityEngine.Random.Range(-size.z / 2, size.z / 2));
+                //Instantiate(coinPrefab, pos + new Vector3(0,0, i), Quaternion.identity);
+                PhotonNetwork.Instantiate("Coin", pos + new Vector3(0, 0, i), Quaternion.identity);
+            }
         }
-        
+        else
+        {
+            Console.WriteLine("no masterclient");
+        }
     }
 
 

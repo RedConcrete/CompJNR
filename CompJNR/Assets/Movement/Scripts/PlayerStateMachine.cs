@@ -24,6 +24,8 @@ public class PlayerStateMachine : MonoBehaviour
     public GameObject wonGame;
     public GameObject marioPreFab;
 
+    
+
     // variables to store player input values
     Vector2 _currentMovementInput;
     Vector3 _currentMovement;
@@ -71,6 +73,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     // Sounds
     public AudioSource coinSound;
+    public TMP_Text coinText;
 
 
     CoinBehaviour coinBehaviour = new CoinBehaviour();
@@ -297,7 +300,8 @@ public class PlayerStateMachine : MonoBehaviour
         if (other.gameObject.CompareTag("Coin"))
         {
             coinSound.Play();
-            coinBehaviour.collectCoin(other.gameObject);
+            GameObject coinText = GameObject.Find("Coins");
+            coinBehaviour.collectCoin(other.gameObject, coinText);
             
         }
 
