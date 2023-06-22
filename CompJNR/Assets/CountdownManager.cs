@@ -28,7 +28,7 @@ public class CountdownManager : MonoBehaviour
             countdownTime--;
         }
 
-        countdownDisplay.text = "GOOO!!!";
+        countdownDisplay.text = "GO!!";
 
         characterController.enabled = true;
 
