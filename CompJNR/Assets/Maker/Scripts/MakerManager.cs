@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -48,7 +49,15 @@ public class MakerManager : MonoBehaviour
 
     public void SelectObject(int index)
     {
-        pendingObject = Instantiate(objects[index], pos, transform.rotation);
+        if (!PhotonNetwork.IsConnected)
+        {
+            pendingObject = Instantiate(objects[index], pos, transform.rotation);
+        }
+        else
+        {
+            pendingObject = PhotonNetwork.Instantiate(objects[index].name, pos, transform.rotation);
+        }
+        
     }
 
     float RoundToNearestGrid(float pos)
