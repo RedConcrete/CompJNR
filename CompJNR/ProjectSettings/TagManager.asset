@@ -9,6 +9,7 @@ TagManager:
   - Bullet
   - Flag
   - Pipe
+  - Coin
   layers:
   - Default
   - TransparentFX

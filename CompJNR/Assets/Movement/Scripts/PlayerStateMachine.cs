@@ -24,6 +24,8 @@ public class PlayerStateMachine : MonoBehaviour
     public GameObject wonGame;
     public GameObject marioPreFab;
 
+    
+
     // variables to store player input values
     Vector2 _currentMovementInput;
     Vector3 _currentMovement;
@@ -69,9 +71,19 @@ public class PlayerStateMachine : MonoBehaviour
     // trigger variables
     bool playerHasFallen;
 
+    // Sounds
+    public AudioSource coinSound;
+    public TMP_Text coinText;
+
+
+    CoinBehaviour coinBehaviour = new CoinBehaviour();
+
     // Awake is called earlier than Start in Unity's event life cycle
     void Awake()
     {
+
+        coinSound = GetComponent<AudioSource>();
+
         respawnPosition = GameObject.Find("RespawnPos");
         pipeSpawnPosition = GameObject.Find("PipeSpawnPosition");
         
@@ -284,6 +296,15 @@ public class PlayerStateMachine : MonoBehaviour
         {
             moveCharToPos(pipeSpawnPosition.transform.position);
         }
+
+        if (other.gameObject.CompareTag("Coin"))
+        {
+            coinSound.Play();
+            GameObject coinText = GameObject.Find("Coins");
+            coinBehaviour.collectCoin(other.gameObject, coinText);
+            
+        }
+
     }
 
     // getters and setters
