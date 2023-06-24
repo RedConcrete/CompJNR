@@ -6,13 +6,21 @@ using UnityEngine.UI;
 public class MakerManager : MonoBehaviour
 {
     public GameObject[] objects;
+    public List<GameObject> placedObjects;
     private GameObject pendingObject;
     private Vector3 pos;
     private RaycastHit hit;
     [SerializeField] private LayerMask layerMask;
     public float gridSize;
     public bool canPlace = true;
-    
+    private int yOffset = 0;
+
+    private void Start()
+    {
+        placedObjects = new();
+    }
+
+
 
     void Update()
     {
@@ -20,7 +28,7 @@ public class MakerManager : MonoBehaviour
         {
             pendingObject.transform.position = new Vector3(
                 RoundToNearestGrid(pos.x),
-                RoundToNearestGrid(pos.y),
+                RoundToNearestGrid(pos.y + yOffset),
                 RoundToNearestGrid(pos.z)
                 );
 
@@ -28,12 +36,37 @@ public class MakerManager : MonoBehaviour
             {
                 PlaceObject();
             }
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                yOffset+= 2;
+            }
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                yOffset-= 2;
+            }
+        }
+        if (Input.GetMouseButtonDown(0))
+        {
+            GetPlacedMakerObject();
         }
     }
 
     public void PlaceObject()
     {
+        placedObjects.Add(pendingObject);
         pendingObject = null;
+
+    }
+
+    private void GetPlacedMakerObject()
+    {
+        foreach (var item in placedObjects)
+        {
+            if(item.transform.position.x == RoundToNearestGrid(pos.x) && item.transform.position.y == RoundToNearestGrid(pos.y) && item.transform.position.z== RoundToNearestGrid(pos.z))
+            {
+                Debug.Log(item.transform.position);
+            }
+        }
     }
 
 
@@ -70,4 +103,5 @@ public class MakerManager : MonoBehaviour
         }
         return pos;
     }
+
 }
