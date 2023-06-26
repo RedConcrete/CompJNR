@@ -41,4 +41,9 @@ public class CoinAmountManager
         coinText.text = "Coins: " + coins.ToString();
         return coinAmountManager;
     }
+
+    public int getCoins()
+    {
+        return coins;
+    }
 }

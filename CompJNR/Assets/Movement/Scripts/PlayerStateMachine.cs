@@ -23,8 +23,9 @@ public class PlayerStateMachine : MonoBehaviour
     public GameObject gameMenu;
     public GameObject wonGame;
     public GameObject marioPreFab;
+    private GameObject coinText;
 
-    
+
 
     // variables to store player input values
     Vector2 _currentMovementInput;
@@ -73,7 +74,6 @@ public class PlayerStateMachine : MonoBehaviour
 
     // Sounds
     public AudioSource coinSound;
-    public TMP_Text coinText;
 
 
     CoinBehaviour coinBehaviour = new CoinBehaviour();
@@ -280,9 +280,10 @@ public class PlayerStateMachine : MonoBehaviour
             // Send the player back to the respawn position
             //Debug.Log(gameObject.name);
             playerHasFallen = true;
+            coinBehaviour.decreaseCoins(coinText);
             //Destroy(gameObject);
             //Instantiate(marioPreFab,respawnPosition.gameObject.transform);
-            
+
         }
 
         if(other.gameObject.CompareTag("Flag"))
@@ -300,7 +301,7 @@ public class PlayerStateMachine : MonoBehaviour
         if (other.gameObject.CompareTag("Coin"))
         {
             coinSound.Play();
-            GameObject coinText = GameObject.Find("Coins");
+            coinText = GameObject.Find("Coins");
             coinBehaviour.collectCoin(other.gameObject, coinText);
             
         }
