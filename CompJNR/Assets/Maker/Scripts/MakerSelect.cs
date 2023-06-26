@@ -49,7 +49,6 @@ public class MakerSelect : MonoBehaviour
 
     private void Deselect()
     {
-        selectedObject.GetComponent<Outline>().enabled = false;
         selectedObject = null;
     }
 }
