@@ -88,8 +88,8 @@ public class PlayerStateMachine : MonoBehaviour
         pipeSpawnPosition = GameObject.Find("PipeSpawnPosition");
         
 
-        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        //UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
         // initially set reference variables
         _playerInput = new PlayerInput();
         _characterController = GetComponent<CharacterController>();

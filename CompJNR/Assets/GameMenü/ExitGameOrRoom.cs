@@ -57,10 +57,10 @@ public class ExitGameOrRoom : MonoBehaviourPunCallbacks
     void OnEscapeShowGameMenu()
     {
         gameMenu.SetActive(!gameMenu.activeSelf);
-        Cursor.visible = !mouseActive;
-        UnityEngine.Cursor.lockState = CursorLockMode.None;
+        //Cursor.visible = !mouseActive;
+        //UnityEngine.Cursor.lockState = CursorLockMode.None;
 
-        mouseActive = !mouseActive;
+        //mouseActive = !mouseActive;
 
     }
 
