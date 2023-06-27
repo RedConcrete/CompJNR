@@ -457,8 +457,8 @@ GameObject:
   - component: {fileID: 6698793247121810106}
   - component: {fileID: 1234950254}
   m_Layer: 0
-  m_Name: MarioWithMovemnetAndCameraMultiplayer
-  m_TagString: Untagged
+  m_Name: Mario
+  m_TagString: Char
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3187,7 +3187,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8397862517376622970}
-  m_LocalRotation: {x: -0.00606257, y: 0.99384594, z: -0.08468197, w: -0.07115163}
+  m_LocalRotation: {x: 0.08489875, y: 0.000000017671903, z: -0.0000000015057586, w: 0.9963896}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

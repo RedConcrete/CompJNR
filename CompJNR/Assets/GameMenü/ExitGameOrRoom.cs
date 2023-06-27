@@ -43,13 +43,17 @@ public class ExitGameOrRoom : MonoBehaviourPunCallbacks
         {
             Debug.LogError("Scene still activ: " + sceneID);
         }
+
+        PhotonNetwork.Disconnect();
     }
 
     public void ExitGame()
     {
 #if UNITY_EDITOR
+        PhotonNetwork.Disconnect();
         UnityEditor.EditorApplication.isPlaying = false;
 #else
+            PhotonNetwork.Disconnect();
             Application.Quit();
 #endif
     }
