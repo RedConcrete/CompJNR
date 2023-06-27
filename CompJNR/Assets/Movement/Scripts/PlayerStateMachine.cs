@@ -82,7 +82,7 @@ public class PlayerStateMachine : MonoBehaviour
 
         coinSound = GetComponent<AudioSource>();
 
-        respawnPosition = GameObject.Find("RespawnPos");
+        respawnPosition = GameObject.Find("SpawnPos");
         pipeSpawnPosition = GameObject.Find("PipeSpawnPosition");
         
 
