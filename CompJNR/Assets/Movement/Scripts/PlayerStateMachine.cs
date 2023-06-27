@@ -24,8 +24,6 @@ public class PlayerStateMachine : MonoBehaviour
     public GameObject wonGame;
     public GameObject marioPreFab;
 
-    
-
     // variables to store player input values
     Vector2 _currentMovementInput;
     Vector3 _currentMovement;
@@ -280,6 +278,8 @@ public class PlayerStateMachine : MonoBehaviour
             // Send the player back to the respawn position
             //Debug.Log(gameObject.name);
             playerHasFallen = true;
+            Console.WriteLine("1");
+            coinBehaviour.decreaseCoin();
             //Destroy(gameObject);
             //Instantiate(marioPreFab,respawnPosition.gameObject.transform);
             
