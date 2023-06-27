@@ -20,6 +20,10 @@ public class SpawnPlayers : MonoBehaviour
     public int makerTime;
     private GameObject countdownDisplayGameObject;
     private TMP_Text countdownDisplay;
+    private GameObject timeLeftBackgroundGameObject;
+    private GameObject timeLeftDisplayGameObject;
+    private TMP_Text timeLeftDisplay;
+
 
     private void Start()
     {
@@ -31,6 +35,11 @@ public class SpawnPlayers : MonoBehaviour
         countdownDisplay = countdownDisplayGameObject.GetComponent<TMP_Text>();
         countdownDisplayGameObject.SetActive(false);
 
+        timeLeftBackgroundGameObject = GameObject.Find("MakerTimeBackground");
+         timeLeftDisplayGameObject = GameObject.Find("MakerTime");
+        timeLeftDisplay = timeLeftDisplayGameObject.GetComponent<TMP_Text>();
+        timeLeftDisplayGameObject.SetActive(true);
+
         spawnedSpawnedCamera = Instantiate(makeCamGameObject, makerCamSpawner.gameObject.transform.position, Quaternion.identity);
         StartCoroutine(MakerTimeCountdownStart());
     }
@@ -39,11 +48,13 @@ public class SpawnPlayers : MonoBehaviour
 
         while (makerTime > 0)
         {
-            //countdownDisplay.text = countdownTime.ToString();
-            Debug.Log("Timeleft: " + makerTime);
+            timeLeftDisplay.text = $"Time : {makerTime}";
             yield return new WaitForSeconds(1f);
             makerTime--;
         }
+
+        timeLeftDisplayGameObject.SetActive(false);
+        timeLeftBackgroundGameObject.SetActive(false);
 
         spawnedSpawnedCamera.SetActive(false);
         spawnedPlayer.SetActive(true);
