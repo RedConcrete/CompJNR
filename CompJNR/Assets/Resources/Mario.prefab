@@ -595,7 +595,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerCamera: {fileID: 8397862517458941605}
   _playerFreeLookCamera: {fileID: 8397862516680270764}
-  respawnPosition: {fileID: 0}
   pipeSpawnPosition: {fileID: 0}
   gameMenu: {fileID: 0}
   wonGame: {fileID: 0}
@@ -604,6 +603,7 @@ MonoBehaviour:
   _walkMultiplier: 4
   coinSound: {fileID: 1234950254}
   coinText: {fileID: 0}
+  countdownTime: 0
 --- !u!114 &6698793247121810106
 MonoBehaviour:
   m_ObjectHideFlags: 0

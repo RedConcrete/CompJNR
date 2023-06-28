@@ -6,6 +6,9 @@ using Photon.Pun;
 using System;
 using Cinemachine;
 using TMPro;
+using Photon.Pun.UtilityScripts;
+using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class PlayerStateMachine : MonoBehaviour
 {
@@ -18,7 +21,7 @@ public class PlayerStateMachine : MonoBehaviour
     Animator _animator;
     PlayerInput _playerInput; // NOTE: PlayerInput class must be generated from New Input System in Inspector
     PhotonView _view;
-    public GameObject respawnPosition;
+    private GameObject respawnPosition;
     public GameObject pipeSpawnPosition;
     public GameObject gameMenu;
     public GameObject wonGame;
@@ -73,6 +76,9 @@ public class PlayerStateMachine : MonoBehaviour
     public AudioSource coinSound;
     public TMP_Text coinText;
 
+    //countdown
+    public int countdownTime;
+
 
     CoinBehaviour coinBehaviour = new CoinBehaviour();
 
@@ -82,7 +88,7 @@ public class PlayerStateMachine : MonoBehaviour
 
         coinSound = GetComponent<AudioSource>();
 
-        respawnPosition = GameObject.Find("SpawnPos");
+        respawnPosition = GameObject.Find("SpawnPlayers");
         pipeSpawnPosition = GameObject.Find("PipeSpawnPosition");
         
 
@@ -287,9 +293,11 @@ public class PlayerStateMachine : MonoBehaviour
 
         if(other.gameObject.CompareTag("Flag"))
         {
-            gameMenu.SetActive(!gameMenu.activeSelf);
-            wonGame.SetActive(!wonGame.activeSelf);
-            _playerInput.CharacterControls.Disable();
+            //gameMenu.SetActive(!gameMenu.activeSelf);
+            //wonGame.SetActive(!wonGame.activeSelf);
+            GameObject coinText = GameObject.Find("Coins");
+            coinBehaviour.increaseCoin(10,coinText);
+            StartCoroutine(CountdownToEnd());
         }
 
         if (other.gameObject.CompareTag("Pipe"))
@@ -305,6 +313,39 @@ public class PlayerStateMachine : MonoBehaviour
             
         }
 
+        if (other.gameObject.CompareTag("Char"))
+        {
+            float pushForce = 10f;
+            float radius = 5f;
+
+            Vector3 direction = _characterController.transform.position - new Vector3(1,1,1);
+            direction.y = 0f; // Optional: Set the y-component to zero to prevent vertical displacement
+
+            float distance = direction.magnitude;
+            float pushFactor = Mathf.Clamp01((radius - distance) / radius);
+
+            Vector3 pushVector = direction.normalized * pushFactor * 1;
+
+            _characterController.SimpleMove(pushVector);
+
+        }
+
+
+    }
+
+    IEnumerator CountdownToEnd()
+    {
+
+        while (countdownTime > 0)
+        {
+            Debug.Log(countdownTime);
+            yield return new WaitForSeconds(1f);
+            countdownTime--;
+        }
+
+        SceneManager.LoadScene("Level-2");
+
+        yield return new WaitForSeconds(1f);
     }
 
     // getters and setters

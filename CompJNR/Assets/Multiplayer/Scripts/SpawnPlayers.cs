@@ -32,7 +32,7 @@ public class SpawnPlayers : MonoBehaviour
 
     private void Start()
     {
-        if (inPraesentation)
+        if (!inPraesentation)
         {
             spawnedPlayer = PhotonNetwork.Instantiate(playerPrefab.name, transform.position, Quaternion.identity);
             characterController = spawnedPlayer.gameObject.GetComponent<CharacterController>();
@@ -46,6 +46,7 @@ public class SpawnPlayers : MonoBehaviour
             timeLeftDisplayGameObject.SetActive(true);
 
             spawnedSpawnedCamera = Instantiate(makeCamGameObject, makerCamSpawner.gameObject.transform.position, Quaternion.identity);
+            spawnedSpawnedCamera.SetActive(true);
             StartCoroutine(MakerTimeCountdownStart());
         }
     }

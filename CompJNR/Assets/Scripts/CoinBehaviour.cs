@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using Photon.Pun;
+using PlayFab.EconomyModels;
 
 public class CoinBehaviour : MonoBehaviour
 {
@@ -16,6 +17,14 @@ public class CoinBehaviour : MonoBehaviour
             .increaseCoin(1);
         PhotonNetwork.Destroy(coin);
     }
+
+    public void increaseCoin(int amount, GameObject coinText)
+    {
+        CoinAmountManager.Instance()
+            .setCoinText(coinText)
+            .increaseCoin(amount);
+    }
+
 
     public void decreaseCoin()
     {
