@@ -1,14 +1,11 @@
+using Cinemachine;
+using Photon.Pun;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Photon.Pun;
-using System;
-using Cinemachine;
-using TMPro;
-using Photon.Pun.UtilityScripts;
 using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
 
 public class PlayerStateMachine : MonoBehaviour
 {
@@ -74,7 +71,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     // Sounds
     public AudioSource coinSound;
-    public TMP_Text coinText;
+    public GameObject coinText;
 
     //countdown
     public int countdownTime;
@@ -85,12 +82,11 @@ public class PlayerStateMachine : MonoBehaviour
     // Awake is called earlier than Start in Unity's event life cycle
     void Awake()
     {
-
         coinSound = GetComponent<AudioSource>();
 
         respawnPosition = GameObject.Find("SpawnPlayers");
         pipeSpawnPosition = GameObject.Find("PipeSpawnPosition");
-        
+
 
         //UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         //Cursor.visible = false;
@@ -182,9 +178,9 @@ public class PlayerStateMachine : MonoBehaviour
         }
         else
         {
-            
+
             moveCharToPos(respawnPosition.transform.position);
-            
+
         }
     }
 
@@ -223,7 +219,7 @@ public class PlayerStateMachine : MonoBehaviour
             _characterController.enabled = true;
             playerHasFallen = false;
         }
-        
+
     }
 
     void HandleRotation()
@@ -279,6 +275,8 @@ public class PlayerStateMachine : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        coinText = GameObject.Find("Coins");
+
         if (other.gameObject.CompareTag("Water"))
         {
             // Send the player back to the respawn position
@@ -288,15 +286,14 @@ public class PlayerStateMachine : MonoBehaviour
             coinBehaviour.decreaseCoin();
             //Destroy(gameObject);
             //Instantiate(marioPreFab,respawnPosition.gameObject.transform);
-            
+
         }
 
-        if(other.gameObject.CompareTag("Flag"))
+        if (other.gameObject.CompareTag("Flag"))
         {
             //gameMenu.SetActive(!gameMenu.activeSelf);
             //wonGame.SetActive(!wonGame.activeSelf);
-            GameObject coinText = GameObject.Find("Coins");
-            coinBehaviour.increaseCoin(10,coinText);
+            coinBehaviour.increaseCoin(40, coinText);
             StartCoroutine(CountdownToEnd());
         }
 
@@ -308,29 +305,27 @@ public class PlayerStateMachine : MonoBehaviour
         if (other.gameObject.CompareTag("Coin"))
         {
             coinSound.Play();
-            GameObject coinText = GameObject.Find("Coins");
             coinBehaviour.collectCoin(other.gameObject, coinText);
-            
+
         }
 
         if (other.gameObject.CompareTag("Char"))
         {
-            float pushForce = 10f;
-            float radius = 5f;
+            float pushForce = 30f;
 
-            Vector3 direction = _characterController.transform.position - new Vector3(1,1,1);
+            CharacterController otherController = other.GetComponent<CharacterController>();
+
+            Vector3 direction = otherController.transform.position - transform.position;
             direction.y = 0f; // Optional: Set the y-component to zero to prevent vertical displacement
 
-            float distance = direction.magnitude;
-            float pushFactor = Mathf.Clamp01((radius - distance) / radius);
+            // Apply forces to push both character controllers away from each other
+            Vector3 forceA = -direction.normalized * pushForce;
+            Vector3 forceB = direction.normalized * pushForce;
 
-            Vector3 pushVector = direction.normalized * pushFactor * 1;
-
-            _characterController.SimpleMove(pushVector);
+            GetComponent<CharacterController>().SimpleMove(forceA);
+            otherController.SimpleMove(forceB);
 
         }
-
-
     }
 
     IEnumerator CountdownToEnd()
@@ -342,8 +337,17 @@ public class PlayerStateMachine : MonoBehaviour
             yield return new WaitForSeconds(1f);
             countdownTime--;
         }
+        string currentSceneName = SceneManager.GetActiveScene().name;
 
-        SceneManager.LoadScene("Level-2");
+        if (currentSceneName == "Level-1")
+        {
+            SceneManager.LoadScene("Level-2");
+        }
+        else
+        {
+            SceneManager.LoadScene("Level-1");
+        }
+
 
         yield return new WaitForSeconds(1f);
     }

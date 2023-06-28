@@ -42,6 +42,12 @@ public class CoinBehaviour : MonoBehaviour
         }
     }
 
+    public void updateCoins(GameObject coinText)
+    {
+        CoinAmountManager.Instance()
+            .setCoinText(coinText);
+    }
+
     private int getLoseCoinAmount(int currentCoinAmount)
     {
         return (int) (currentCoinAmount * 0.25f);

@@ -990,7 +990,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-6810
+  m_Name: pb_Mesh-207934
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4352,7 +4352,7 @@ MonoBehaviour:
   MakerUi: {fileID: 174687603}
   GameUi: {fileID: 1788482723}
   countdownTime: 3
-  makerTime: 1111111111
+  makerTime: 5
 --- !u!4 &815490990
 Transform:
   m_ObjectHideFlags: 0
@@ -4361,7 +4361,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 815490988}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 416, y: 47, z: 82}
+  m_LocalPosition: {x: 53, y: 4, z: -73}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4465,6 +4465,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8397862516680270766, guid: 69be13beda984414096c0b222dc27482, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8397862517069872088, guid: 69be13beda984414096c0b222dc27482, type: 3}
       propertyPath: wonGame
       value: 
@@ -4476,6 +4480,10 @@ PrefabInstance:
     - target: {fileID: 8397862517069872088, guid: 69be13beda984414096c0b222dc27482, type: 3}
       propertyPath: gameMenu
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8397862517069872088, guid: 69be13beda984414096c0b222dc27482, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8397862517069872088, guid: 69be13beda984414096c0b222dc27482, type: 3}
       propertyPath: countdownTime
@@ -4491,11 +4499,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8397862517376622968, guid: 69be13beda984414096c0b222dc27482, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000017671903
+      value: -0.000000017671892
       objectReference: {fileID: 0}
     - target: {fileID: 8397862517376622968, guid: 69be13beda984414096c0b222dc27482, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000015057586
+      value: 0.0000000015057577
+      objectReference: {fileID: 0}
+    - target: {fileID: 8397862517458941607, guid: 69be13beda984414096c0b222dc27482, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8397862518384237524, guid: 69be13beda984414096c0b222dc27482, type: 3}
       propertyPath: sceneViewId
@@ -4520,7 +4532,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 2, y: 3, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &881059162
 PrefabInstance:
