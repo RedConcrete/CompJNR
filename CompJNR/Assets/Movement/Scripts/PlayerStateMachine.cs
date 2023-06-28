@@ -1,11 +1,11 @@
+using Cinemachine;
+using Photon.Pun;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Photon.Pun;
-using System;
-using Cinemachine;
-using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PlayerStateMachine : MonoBehaviour
 {
@@ -18,7 +18,7 @@ public class PlayerStateMachine : MonoBehaviour
     Animator _animator;
     PlayerInput _playerInput; // NOTE: PlayerInput class must be generated from New Input System in Inspector
     PhotonView _view;
-    public GameObject respawnPosition;
+    private GameObject respawnPosition;
     public GameObject pipeSpawnPosition;
     public GameObject gameMenu;
     public GameObject wonGame;
@@ -71,7 +71,10 @@ public class PlayerStateMachine : MonoBehaviour
 
     // Sounds
     public AudioSource coinSound;
-    public TMP_Text coinText;
+    public GameObject coinText;
+
+    //countdown
+    public int countdownTime;
 
 
     CoinBehaviour coinBehaviour = new CoinBehaviour();
@@ -79,12 +82,11 @@ public class PlayerStateMachine : MonoBehaviour
     // Awake is called earlier than Start in Unity's event life cycle
     void Awake()
     {
-
         coinSound = GetComponent<AudioSource>();
 
-        respawnPosition = GameObject.Find("SpawnPos");
+        respawnPosition = GameObject.Find("SpawnPlayers");
         pipeSpawnPosition = GameObject.Find("PipeSpawnPosition");
-        
+
 
         //UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         //Cursor.visible = false;
@@ -176,9 +178,9 @@ public class PlayerStateMachine : MonoBehaviour
         }
         else
         {
-            
+
             moveCharToPos(respawnPosition.transform.position);
-            
+
         }
     }
 
@@ -217,7 +219,7 @@ public class PlayerStateMachine : MonoBehaviour
             _characterController.enabled = true;
             playerHasFallen = false;
         }
-        
+
     }
 
     void HandleRotation()
@@ -273,6 +275,8 @@ public class PlayerStateMachine : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        coinText = GameObject.Find("Coins");
+
         if (other.gameObject.CompareTag("Water"))
         {
             // Send the player back to the respawn position
@@ -282,14 +286,15 @@ public class PlayerStateMachine : MonoBehaviour
             coinBehaviour.decreaseCoin();
             //Destroy(gameObject);
             //Instantiate(marioPreFab,respawnPosition.gameObject.transform);
-            
+
         }
 
-        if(other.gameObject.CompareTag("Flag"))
+        if (other.gameObject.CompareTag("Flag"))
         {
-            gameMenu.SetActive(!gameMenu.activeSelf);
-            wonGame.SetActive(!wonGame.activeSelf);
-            _playerInput.CharacterControls.Disable();
+            //gameMenu.SetActive(!gameMenu.activeSelf);
+            //wonGame.SetActive(!wonGame.activeSelf);
+            coinBehaviour.increaseCoin(40, coinText);
+            StartCoroutine(CountdownToEnd());
         }
 
         if (other.gameObject.CompareTag("Pipe"))
@@ -300,11 +305,51 @@ public class PlayerStateMachine : MonoBehaviour
         if (other.gameObject.CompareTag("Coin"))
         {
             coinSound.Play();
-            GameObject coinText = GameObject.Find("Coins");
             coinBehaviour.collectCoin(other.gameObject, coinText);
-            
+
         }
 
+        if (other.gameObject.CompareTag("Char"))
+        {
+            float pushForce = 30f;
+
+            CharacterController otherController = other.GetComponent<CharacterController>();
+
+            Vector3 direction = otherController.transform.position - transform.position;
+            direction.y = 0f; // Optional: Set the y-component to zero to prevent vertical displacement
+
+            // Apply forces to push both character controllers away from each other
+            Vector3 forceA = -direction.normalized * pushForce;
+            Vector3 forceB = direction.normalized * pushForce;
+
+            GetComponent<CharacterController>().SimpleMove(forceA);
+            otherController.SimpleMove(forceB);
+
+        }
+    }
+
+    IEnumerator CountdownToEnd()
+    {
+
+        while (countdownTime > 0)
+        {
+            Debug.Log(countdownTime);
+            yield return new WaitForSeconds(1f);
+            countdownTime--;
+        }
+        string currentSceneName = SceneManager.GetActiveScene().name;
+
+        if (currentSceneName == "Level-1")
+        {
+            SceneManager.LoadScene("Level-2");
+        }
+        else
+        {
+            SceneManager.LoadScene("Level-1");
+        }
+
+
+        yield return new WaitForSeconds(1f);
     }
 
     // getters and setters

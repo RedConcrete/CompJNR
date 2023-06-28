@@ -456,6 +456,7 @@ GameObject:
   - component: {fileID: 8397862517069872088}
   - component: {fileID: 6698793247121810106}
   - component: {fileID: 1234950254}
+  - component: {fileID: -7386349279291610622}
   m_Layer: 0
   m_Name: Mario
   m_TagString: Char
@@ -595,7 +596,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerCamera: {fileID: 8397862517458941605}
   _playerFreeLookCamera: {fileID: 8397862516680270764}
-  respawnPosition: {fileID: 0}
   pipeSpawnPosition: {fileID: 0}
   gameMenu: {fileID: 0}
   wonGame: {fileID: 0}
@@ -604,6 +604,7 @@ MonoBehaviour:
   _walkMultiplier: 4
   coinSound: {fileID: 1234950254}
   coinText: {fileID: 0}
+  countdownTime: 0
 --- !u!114 &6698793247121810106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -733,6 +734,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &-7386349279291610622
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1108508992321685181}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 3, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1360380417481377802
 GameObject:
   m_ObjectHideFlags: 0
