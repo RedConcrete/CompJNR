@@ -35,16 +35,8 @@ public class ExitGameOrRoom : MonoBehaviourPunCallbacks
 
     public override void OnLeftRoom()
     {
-        if (SceneManager.GetActiveScene().buildIndex != sceneID) // check if scene is already loaded
-        {
-            PhotonNetwork.LoadLevel(sceneID);
-        }
-        else
-        {
-            Debug.LogError("Scene still activ: " + sceneID);
-        }
-
         PhotonNetwork.Disconnect();
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void ExitGame()
